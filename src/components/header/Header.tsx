@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <Wrapper>
       <HeaderContainer>
-        <LogoContainer>
+        <LogoContainer onClick={() => navigate('/')}>
           <img src="/images/Logo.svg" />
         </LogoContainer>
         <Menu>신상품</Menu>
@@ -42,6 +42,9 @@ const LogoContainer = styled.div`
   padding-top: 8px;
   width: 82px;
   height: 42px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Menu = styled.div`
