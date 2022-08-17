@@ -19,7 +19,9 @@ const SubscribePage = () => {
               width={200}
               height={220}
             />
-            <Title>김*림</Title>
+            <Title>
+              <Name>김*림</Name> 컬리뷰
+            </Title>
           </Info>
           <SubscribeButton
             onClick={() => setSelected(!selected)}
@@ -56,12 +58,16 @@ const Info = styled.section`
 `;
 const Title = styled.section`
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 600;
 
   color: #333333;
 
   margin-bottom: 20px;
   margin-left: 50px;
+`;
+const Name = styled.span`
+  color: #5f0080;
+  letter-spacing: 2px;
 `;
 const ReviewBox = styled.section`
   display: flex;
