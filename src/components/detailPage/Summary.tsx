@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import Buttons from './Buttons';
 import CountProduct from './CountProduct';
 import InfoList from './InfoList';
 import ProductPrice from './ProductPrice';
@@ -51,6 +52,7 @@ const Summary = () => {
         <CountProduct count={count} setCount={setCount} />
         <ProductPrice count={count} price={2070} />
         <Description>로그인 후, 적립 혜택 제공</Description>
+        <Buttons />
       </Information>
     </Container>
   );
