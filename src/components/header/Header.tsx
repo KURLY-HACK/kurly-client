@@ -28,6 +28,7 @@ const Wrapper = styled.div`
   box-shadow: 0 2px 5px #d9d9d9;
   position: fixed;
   top: 0;
+  background-color: #ffffff;
 `;
 
 const HeaderContainer = styled.div`
