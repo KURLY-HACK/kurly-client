@@ -31,6 +31,7 @@ const Text = styled.section`
   color: #666666;
 
   margin-right: 12px;
+  margin-top: 2px;
 `;
 const StarBox = styled.section`
   display: flex;

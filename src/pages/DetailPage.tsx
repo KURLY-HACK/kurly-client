@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Summary from '../components/detailPage/Summary';
+import Summary from '../components/detailPage/summary/Summary';
 import Tabs from '../components/detailPage/Tabs';
 import Header from '../components/header/Header';
 

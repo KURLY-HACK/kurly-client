@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
-import Review from './Review';
+import Question from './question/Question';
+import Review from './review/Review';
 
 const Tabs = () => {
   const [selected, setSelected] = useState(1);
@@ -24,7 +25,10 @@ const Tabs = () => {
           문의
         </Tab>
       </TabBox>
-      {selected === 3 ? <Review /> : <Contents></Contents>}
+      {selected === 1 && <Review />}
+      {selected === 2 && <Review />}
+      {selected === 3 && <Review />}
+      {selected === 4 && <Question />}
     </Container>
   );
 };
