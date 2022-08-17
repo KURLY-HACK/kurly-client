@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import EachProduct from './EachProduct';
 
@@ -42,30 +42,108 @@ const ProductLists = () => {
     },
   ];
 
+  const [isLeftScrollButtonHover, setIsLeftScrollButtonHover] = useState(false);
+  const [isRightScrollButtonHover, setIsRightScrollButtonHover] =
+    useState(false);
+
+  //   const handleScrollButton=()
+
   return (
-    <ProductListsContainer>
-      {productLists?.map((product) => {
-        return (
-          <>
-            <EachProduct
-              key={product.id + `${new Date()}`}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-            />
-          </>
-        );
-      })}
-    </ProductListsContainer>
+    <Wrapper>
+      <LeftScrollButton
+        onMouseOver={() => setIsLeftScrollButtonHover(true)}
+        onMouseOut={() => setIsLeftScrollButtonHover(false)}
+      >
+        {isLeftScrollButtonHover ? (
+          <img
+            src="/images/scroll/activeLeftScroll.svg"
+            width={60}
+            height={60}
+          />
+        ) : (
+          <img
+            src="images/scroll/inactiveLeftScroll.svg"
+            width={60}
+            height={60}
+          />
+        )}
+      </LeftScrollButton>
+      <ProductListsContainer>
+        {productLists?.map((product) => {
+          return (
+            <>
+              <EachProduct
+                key={product.id + `${new Date()}`}
+                image={product.image}
+                name={product.name}
+                price={product.price}
+              />
+            </>
+          );
+        })}
+      </ProductListsContainer>
+      <RightScrollButton
+        onMouseOver={() => setIsRightScrollButtonHover(true)}
+        onMouseOut={() => setIsRightScrollButtonHover(false)}
+      >
+        {isRightScrollButtonHover ? (
+          <img
+            src="/images/scroll/activeRightScroll.svg"
+            width={60}
+            height={60}
+          />
+        ) : (
+          <img
+            src="images/scroll/inactiveRightScroll.svg"
+            width={60}
+            height={60}
+          />
+        )}
+      </RightScrollButton>
+    </Wrapper>
   );
 };
 
 export default ProductLists;
 
+const Wrapper = styled.div`
+  display: flex;
+`;
+
 const ProductListsContainer = styled.div`
   margin: auto;
   display: flex;
-  width: 1060px;
+  width: 1050px;
   height: 410px;
   overflow: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const LeftScrollButton = styled.button`
+  margin-top: 130px;
+  margin-left: 120px;
+  margin-right: 10px;
+  width: 60px;
+  height: 60px;
+  z-index: 1;
+  background: none;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const RightScrollButton = styled.button`
+  margin-top: 130px;
+  margin-right: 140px;
+  width: 60px;
+  height: 60px;
+  z-index: 1;
+  background: none;
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
 `;

@@ -25,6 +25,9 @@ const Wrapper = styled.div`
   width: 249px;
   height: 390px;
   padding-right: 16px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const ProductImage = styled.div`
   width: 249px;
