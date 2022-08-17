@@ -2,12 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const QuestionComponent = ({
-  question: { id, title, content, writer, date, resolve },
+  question: { title, writer, date, resolve },
 }: {
   question: {
-    id: number;
     title: string;
-    content: string;
     writer: string;
     date: string;
     resolve: number;

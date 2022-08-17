@@ -40,20 +40,20 @@ const Question = () => {
         배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1
         문의에 남겨주세요.
       </Description>
-      <ReviewBox>
-        <ReviewColumns>
+      <QuestionBox>
+        <QuestionColumns>
           <Column>제목</Column>
           <Column>작성자</Column>
           <Column>작성일</Column>
           <Column>도움</Column>
-        </ReviewColumns>
+        </QuestionColumns>
         {questions.map((data) => (
           <section key={data.id} onClick={() => setSelected(data.id)}>
             <QuestionComponent question={data} />
-            {selected === data.id && <QuestionDetail question={data} />}
+            {selected === data.id && <QuestionDetail question={data.content} />}
           </section>
         ))}
-      </ReviewBox>
+      </QuestionBox>
       <WriteButton>후기쓰기</WriteButton>
     </Container>
   );
@@ -79,13 +79,13 @@ const Description = styled.section`
 
   color: #666666;
 `;
-const ReviewBox = styled.section`
+const QuestionBox = styled.section`
   margin-top: 15px;
 
   border-top: 2px solid #522772;
   border-bottom: 1px solid #522772;
 `;
-const ReviewColumns = styled.section`
+const QuestionColumns = styled.section`
   display: grid;
   grid-template-columns: 715px 80px 120px 80px;
 `;

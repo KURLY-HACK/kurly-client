@@ -1,22 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const QuestionDetail = ({
-  question: { id, title, content, writer, date, resolve },
-}: {
-  question: {
-    id: number;
-    title: string;
-    content: string;
-    writer: string;
-    date: string;
-    resolve: number;
-  };
-}) => {
+const QuestionDetail = ({ question }: { question: string }) => {
   return (
     <Container>
       <QuestionMark>Q</QuestionMark>
-      <Description>{content}</Description>
+      <Description>{question}</Description>
     </Container>
   );
 };
@@ -52,5 +41,5 @@ const Description = styled.section`
   font-size: 13px;
 
   margin-left: 10px;
-  margin-top: 6px;
+  margin-top: 5px;
 `;

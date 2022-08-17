@@ -25,8 +25,16 @@ const Tabs = () => {
           문의
         </Tab>
       </TabBox>
-      {selected === 1 && <Review />}
-      {selected === 2 && <Review />}
+      {selected === 1 && (
+        <Contents>
+          <img alt="contents" src="" width={1007} />
+        </Contents>
+      )}
+      {selected === 2 && (
+        <Contents>
+          <img alt="information" src="" width={1007} />
+        </Contents>
+      )}
       {selected === 3 && <Review />}
       {selected === 4 && <Question />}
     </Container>
@@ -65,6 +73,7 @@ const Tab = styled.section<{ selected: number; curIndex: number }>`
       ? css`
           background: #ffffff;
           color: #5f0080;
+          border-bottom: 1px solid #ffffff;
         `
       : css`
           background: #fafafa;
@@ -73,10 +82,12 @@ const Tab = styled.section<{ selected: number; curIndex: number }>`
 
   cursor: pointer;
 `;
+const Contents = styled.section`
+  margin: 50px 0;
+`;
 const Description = styled.section<{ selected: number; curIndex: number }>`
   font-size: 14px;
   font-weight: 500;
   color: ${({ selected, curIndex }) =>
     selected === curIndex ? '#5f0080' : '#999999'};
 `;
-const Contents = styled.section``;
