@@ -1,43 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import ReviewComponent from './ReviewComponent';
-import ReviewDetail from './ReviewDetail';
+import ReviewList from '../../subscribeListPage/ReviewList';
 
-const review = [
-  {
-    id: 1,
-    product: '전용목장우유 900mL',
-    content:
-      '예전엔 우유가 이렇게 비싸단 생각은 안들었는데 브랜드 우유를 포함한 모든 생필품이 장난이 아닌 시대가 왔네요. 그럼에도 믿고 먹을 수 있는 연세우유를 2천원이 조금 안되는 금액으로 마실 수 있어...',
-    writer: '주*정',
-    date: '2022-08-15',
-    image: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg',
-    help: 1,
-  },
-  {
-    id: 2,
-    product: '전용목장우유 900mL',
-    content:
-      '저는 주로 집에 있는 요거트메이커를 이용해서 그릭요거트를 만들어 먹어요. 그릭요거트에는 우유가 700ml 가까이 필요한데 시중에 있는 우유를 계속 사기엔 좀 비싸다는 생각이 들어서 비교적 가격이 저렴..',
-    writer: '김*연',
-    date: '2022-08-14',
-    image: '',
-    help: 0,
-  },
-  {
-    id: 3,
-    product: '전용목장우유 900mL',
-    content: '맛있어요~!',
-    writer: '김*림',
-    date: '2022-08-13',
-    image: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg',
-    help: 1,
-  },
-];
-
-const Review = () => {
-  const [selected, setSelected] = useState(0);
-
+const Review = ({
+  review,
+}: {
+  review: {
+    id: number;
+    product: string;
+    content: string;
+    image: string;
+    writer: string;
+    date: string;
+    help: number;
+  }[];
+}) => {
   return (
     <Container>
       <Title>PRODUCT REVIEW</Title>
@@ -49,24 +26,7 @@ const Review = () => {
         배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1
         문의에 남겨주세요.
       </Description>
-      <ReviewBox>
-        <ReviewColumns>
-          <Column>번호</Column>
-          <Column>내용</Column>
-          <Column>작성자</Column>
-          <Column>작성일</Column>
-          <Column>도움</Column>
-        </ReviewColumns>
-        {review.map((data) => (
-          <section key={data.id} onClick={() => setSelected(data.id)}>
-            {selected === data.id ? (
-              <ReviewDetail review={data} />
-            ) : (
-              <ReviewComponent review={data} />
-            )}
-          </section>
-        ))}
-      </ReviewBox>
+      <ReviewList review={review} />
       <WriteButton>후기쓰기</WriteButton>
     </Container>
   );
@@ -91,27 +51,6 @@ const Description = styled.section`
   font-weight: 700;
 
   color: #666666;
-`;
-const ReviewBox = styled.section`
-  margin-top: 15px;
-
-  border-top: 2px solid #522772;
-  border-bottom: 1px solid #522772;
-`;
-const ReviewColumns = styled.section`
-  display: grid;
-  grid-template-columns: 75px 640px 80px 120px 80px;
-`;
-const Column = styled.span`
-  height: 70px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: #666666;
-  font-size: 12px;
-  font-weight: 700;
 `;
 const WriteButton = styled.section`
   background: #795b8f;

@@ -45,7 +45,7 @@ const Question = () => {
           <Column>제목</Column>
           <Column>작성자</Column>
           <Column>작성일</Column>
-          <Column>도움</Column>
+          <Column>상태</Column>
         </QuestionColumns>
         {questions.map((data) => (
           <section key={data.id} onClick={() => setSelected(data.id)}>

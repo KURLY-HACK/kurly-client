@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import Question from './question/Question';
 import Review from './review/Review';
+import { review } from '../../lib/review';
 
 const Tabs = () => {
   const [selected, setSelected] = useState(1);
@@ -18,7 +19,7 @@ const Tabs = () => {
         <Tab selected={selected} curIndex={3} onClick={() => setSelected(3)}>
           후기
           <Description selected={selected} curIndex={3}>
-            &nbsp;(1234)
+            &nbsp;({review.length})
           </Description>
         </Tab>
         <Tab selected={selected} curIndex={4} onClick={() => setSelected(4)}>
@@ -35,7 +36,7 @@ const Tabs = () => {
           <img alt="information" src="" width={1007} />
         </Contents>
       )}
-      {selected === 3 && <Review />}
+      {selected === 3 && <Review review={review} />}
       {selected === 4 && <Question />}
     </Container>
   );
