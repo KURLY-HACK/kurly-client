@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ReviewComponent from './ReviewComponent';
+import ReviewDetail from './ReviewDetail';
 
 const review = [
   {
@@ -35,6 +36,8 @@ const review = [
 ];
 
 const Review = () => {
+  const [selected, setSelected] = useState(0);
+
   return (
     <Container>
       <Title>PRODUCT REVIEW</Title>
@@ -55,7 +58,13 @@ const Review = () => {
           <Column>도움</Column>
         </ReviewColumns>
         {review.map((data) => (
-          <ReviewComponent key={data.id} review={data} />
+          <section key={data.id} onClick={() => setSelected(data.id)}>
+            {selected === data.id ? (
+              <ReviewDetail review={data} />
+            ) : (
+              <ReviewComponent review={data} />
+            )}
+          </section>
         ))}
       </ReviewBox>
       <WriteButton>후기쓰기</WriteButton>
@@ -91,7 +100,7 @@ const ReviewBox = styled.section`
 `;
 const ReviewColumns = styled.section`
   display: grid;
-  grid-template-columns: 65px 632px 77px 100px 80px;
+  grid-template-columns: 75px 640px 80px 120px 80px;
 `;
 const Column = styled.span`
   height: 70px;

@@ -35,12 +35,14 @@ export default ReviewComponent;
 
 const Container = styled.section`
   display: grid;
-  grid-template-columns: 65px 632px 77px 100px 80px;
+  grid-template-columns: 75px 640px 80px 120px 80px;
 
   padding: 30px 0;
   border-top: 1px solid #f4f4f4;
 
   color: #666666;
+
+  cursor: pointer;
 `;
 const Text = styled.section`
   font-size: 12px;
