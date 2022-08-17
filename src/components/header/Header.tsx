@@ -13,7 +13,7 @@ const Header = () => {
         <Menu>신상품</Menu>
         <Menu>베스트</Menu>
         <Menu>알뜰쇼핑</Menu>
-        <Menu>구독 리스트</Menu>
+        <Menu onClick={() => navigate('/subscribe-list')}>구독 리스트</Menu>
         <LoginButton onClick={() => navigate('/login')}>로그인</LoginButton>
       </HeaderContainer>
     </Wrapper>
