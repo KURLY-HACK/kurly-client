@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
+import Review from './Review';
 
 const Tabs = () => {
   const [selected, setSelected] = useState(1);
 
   return (
-    <>
+    <Container>
       <TabBox>
         <Tab selected={selected} curIndex={1} onClick={() => setSelected(1)}>
           상품설명
@@ -23,13 +24,20 @@ const Tabs = () => {
           문의
         </Tab>
       </TabBox>
-      <Contents></Contents>
-    </>
+      {selected === 3 ? <Review /> : <Contents></Contents>}
+    </Container>
   );
 };
 
 export default Tabs;
 
+const Container = styled.section`
+  width: 1007px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
 const TabBox = styled.section`
   margin-top: 56px;
 

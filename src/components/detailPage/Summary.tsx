@@ -45,8 +45,8 @@ const Summary = () => {
           로그인 후, 적립 혜택이 제공됩니다.
         </Text>
         <InfoListBox>
-          {infoList.map((info) => (
-            <InfoList info={info} />
+          {infoList.map((info, idx) => (
+            <InfoList key={idx} info={info} />
           ))}
         </InfoListBox>
         <CountProduct count={count} setCount={setCount} />
