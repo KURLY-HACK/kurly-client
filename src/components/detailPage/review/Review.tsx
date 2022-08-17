@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import ReviewList from '../../subscribeListPage/ReviewList';
 import ReviewComponent from './ReviewComponent';
 import ReviewDetail from './ReviewDetail';
 
@@ -29,24 +30,7 @@ const Review = ({
         배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1
         문의에 남겨주세요.
       </Description>
-      <ReviewBox>
-        <ReviewColumns>
-          <Column>번호</Column>
-          <Column>내용</Column>
-          <Column>작성자</Column>
-          <Column>작성일</Column>
-          <Column>도움</Column>
-        </ReviewColumns>
-        {review.map((data) => (
-          <section key={data.id} onClick={() => setSelected(data.id)}>
-            {selected === data.id ? (
-              <ReviewDetail review={data} />
-            ) : (
-              <ReviewComponent review={data} />
-            )}
-          </section>
-        ))}
-      </ReviewBox>
+      <ReviewList review={review} />
       <WriteButton>후기쓰기</WriteButton>
     </Container>
   );
