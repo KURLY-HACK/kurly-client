@@ -24,4 +24,5 @@ const Container = styled.section`
   align-items: center;
 
   min-width: 1060px;
+  padding: 0 20px;
 `;
