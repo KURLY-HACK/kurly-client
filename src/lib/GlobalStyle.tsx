@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
 html{
-    font-family: 'Noto Sans', sans-serif;;
+    font-family: 'Noto Sans', sans-serif;
 }
 body{
     width: 100%;
