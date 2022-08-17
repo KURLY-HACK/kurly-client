@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ReviewList from '../../subscribeListPage/ReviewList';
-import ReviewComponent from './ReviewComponent';
-import ReviewDetail from './ReviewDetail';
 
 const Review = ({
   review,
@@ -17,8 +15,6 @@ const Review = ({
     help: number;
   }[];
 }) => {
-  const [selected, setSelected] = useState(0);
-
   return (
     <Container>
       <Title>PRODUCT REVIEW</Title>
@@ -55,27 +51,6 @@ const Description = styled.section`
   font-weight: 700;
 
   color: #666666;
-`;
-const ReviewBox = styled.section`
-  margin-top: 15px;
-
-  border-top: 2px solid #522772;
-  border-bottom: 1px solid #522772;
-`;
-const ReviewColumns = styled.section`
-  display: grid;
-  grid-template-columns: 75px 640px 80px 120px 80px;
-`;
-const Column = styled.span`
-  height: 70px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  color: #666666;
-  font-size: 12px;
-  font-weight: 700;
 `;
 const WriteButton = styled.section`
   background: #795b8f;

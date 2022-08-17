@@ -46,6 +46,8 @@ export default ReviewList;
 
 const Container = styled.section`
   line-height: 120%;
+
+  width: 1007px;
 `;
 const ReviewBox = styled.section`
   margin-top: 15px;

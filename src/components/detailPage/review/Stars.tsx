@@ -31,5 +31,5 @@ const Stars = ({ rate }: { rate: number }) => {
 export default Stars;
 
 const Container = styled.section`
-  margin-right: 54px;
+  margin-right: 44px;
 `;
