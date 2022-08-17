@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import FreshLineChart from '../../chart/FreshLineChart';
+import ReviewLineChart from '../../chart/ReviewLineChart';
 import ReviewList from '../../subscribeListPage/ReviewList';
 
 const Review = ({
@@ -15,8 +17,36 @@ const Review = ({
     help: number;
   }[];
 }) => {
+  const [isFreshFood, setIsFreshFood] = useState(false);
   return (
     <Container>
+      {isFreshFood ? (
+        <>
+          <ChangeGraphButton
+            onClick={() => {
+              setIsFreshFood(false);
+            }}
+          >
+            월별 총 별점
+          </ChangeGraphButton>
+          <GraphContainer>
+            <FreshLineChart />
+          </GraphContainer>
+        </>
+      ) : (
+        <>
+          <ChangeGraphButton
+            onClick={() => {
+              setIsFreshFood(true);
+            }}
+          >
+            주간 상세 별점
+          </ChangeGraphButton>
+          <GraphContainer>
+            <ReviewLineChart />
+          </GraphContainer>
+        </>
+      )}
       <Title>PRODUCT REVIEW</Title>
       <Description>
         상품에 대한 문의를 남기는 공간입니다. 해당 게시판의 성격과 다른 글은
@@ -77,6 +107,30 @@ const WriteButton = styled.section`
     background: #ffffff;
     border: 1px solid #5f0080;
 
+    color: #5f0080;
+  }
+`;
+
+const GraphContainer = styled.div`
+  margin: 20px 0;
+`;
+const ChangeGraphButton = styled.div`
+  width: 130px;
+  height: 32px;
+  background: #795b8f;
+  border: 1px solid #5f0080;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  float: right;
+  z-index: 1;
+  &:hover {
+    cursor: pointer;
+    background: #ffffff;
+    border: 1px solid #5f0080;
     color: #5f0080;
   }
 `;
