@@ -19,7 +19,6 @@ const ReviewDetail = ({
     <Container>
       {image && (
         <Image>
-          {' '}
           <img alt="preview" src={image} width={560} />
         </Image>
       )}
