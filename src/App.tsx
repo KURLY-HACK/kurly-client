@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { LogIn, MainPage } from './pages';
-import DetailPage from './pages/DetailPage';
+import { LogIn, MainPage, DetailPage } from './pages';
 
 function App() {
   return (

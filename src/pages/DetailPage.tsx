@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Summary from '../components/detailPage/Summary';
+import Header from '../components/header/Header';
 
 const Container = styled.section`
   display: flex;
@@ -12,10 +13,13 @@ const Container = styled.section`
 
 const DetailPage = () => {
   return (
-    <Container>
-      <Summary />
-      detail
-    </Container>
+    <section>
+      <Header />
+      <Container>
+        <Summary />
+        detail
+      </Container>
+    </section>
   );
 };
 

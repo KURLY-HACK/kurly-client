@@ -1,8 +1,58 @@
 import React from 'react';
 import styled from 'styled-components';
+import InfoList from './InfoList';
+
+const infoList = [
+  {
+    title: '배송',
+    description:
+      '샛별배송\n23시 전 주문 시 내일 아침 7시 전 도착\n(대구·부산·울산 샛별배송 운영시간 별도 확인)',
+  },
+  {
+    title: '판매자',
+    description: '컬리',
+  },
+];
+
+const Summary = () => {
+  return (
+    <Container>
+      <Image
+        alt="product"
+        src="https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg"
+      />
+      <Information>
+        <Text size={13} color="999999" margin={0} strong={false}>
+          샛별배송
+        </Text>
+        <Text size={24} color="333333" margin={6} strong={true}>
+          전용목장우유 900mL
+        </Text>
+        <section style={{ marginTop: 20, display: 'flex' }}>
+          <Text size={28} color="333333" margin={0} strong={true}>
+            2,070
+          </Text>
+          <Text size={20} color="333333" margin={7} strong={true}>
+            &nbsp;원
+          </Text>
+        </section>
+        <Text size={14} color="5f0080" margin={17} strong={false}>
+          로그인 후, 적립 혜택이 제공됩니다.
+        </Text>
+        <InfoListBox>
+          {infoList.map((info) => (
+            <InfoList info={info} />
+          ))}
+        </InfoListBox>
+      </Information>
+    </Container>
+  );
+};
+
+export default Summary;
 
 const Container = styled.section`
-  margin-top: 54px;
+  margin-top: 110px;
 
   display: flex;
 `;
@@ -26,35 +76,6 @@ const Text = styled.section<{
   color: #${({ color }) => color};
   font-weight: ${({ strong }) => strong && 500};
 `;
-
-const Summary = () => {
-  return (
-    <Container>
-      <Image
-        alt="product"
-        src="https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg"
-      />
-      <Information>
-        <Text size={13} color="999999" margin={0} strong={false}>
-          샛별배송
-        </Text>
-        <Text size={24} color="333333" margin={6} strong={true}>
-          전용목장우유 900mL
-        </Text>
-        <section style={{ marginTop: 20, display: 'flex' }}>
-          <Text size={28} color="333333" margin={0} strong={true}>
-            2,070
-          </Text>
-          <Text size={20} color="333333" margin={9} strong={true}>
-            &nbsp;원
-          </Text>
-        </section>
-        <Text size={14} color="5f0080" margin={17} strong={false}>
-          로그인 후, 적립 혜택이 제공됩니다.
-        </Text>
-      </Information>
-    </Container>
-  );
-};
-
-export default Summary;
+const InfoListBox = styled.section`
+  margin-top: 20px;
+`;
