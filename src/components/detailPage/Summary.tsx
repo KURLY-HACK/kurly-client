@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import CountProduct from './CountProduct';
 import InfoList from './InfoList';
+import ProductPrice from './ProductPrice';
 
 const infoList = [
   {
@@ -15,6 +17,8 @@ const infoList = [
 ];
 
 const Summary = () => {
+  const [count, setCount] = useState(0);
+
   return (
     <Container>
       <Image
@@ -44,6 +48,9 @@ const Summary = () => {
             <InfoList info={info} />
           ))}
         </InfoListBox>
+        <CountProduct count={count} setCount={setCount} />
+        <ProductPrice count={count} price={2070} />
+        <Description>로그인 후, 적립 혜택 제공</Description>
       </Information>
     </Container>
   );
@@ -78,4 +85,13 @@ const Text = styled.section<{
 `;
 const InfoListBox = styled.section`
   margin-top: 20px;
+`;
+const Description = styled.section`
+  font-size: 13px;
+  color: #666666;
+
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 10px;
 `;

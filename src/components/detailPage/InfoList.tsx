@@ -17,7 +17,7 @@ const InfoList = ({
 export default InfoList;
 
 const Container = styled.section`
-  border-top: 1px solid #fafafa;
+  border-top: 1px solid #f4f4f4;
   padding: 17px 0;
 
   display: flex;
