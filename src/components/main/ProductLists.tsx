@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import EachProduct from './EachProduct';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import PrevArrow from './PrevArrow';
+import NextArrow from './NextArrow';
 
 const ProductLists = () => {
   const productLists = [
@@ -46,71 +51,48 @@ const ProductLists = () => {
   const [isRightScrollButtonHover, setIsRightScrollButtonHover] =
     useState(false);
 
-  //   const handleScrollButton=()
-
   return (
     <Wrapper>
-      <LeftScrollButton
-        onMouseOver={() => setIsLeftScrollButtonHover(true)}
-        onMouseOut={() => setIsLeftScrollButtonHover(false)}
-      >
-        {isLeftScrollButtonHover ? (
-          <img
-            src="/images/scroll/activeLeftScroll.svg"
-            width={60}
-            height={60}
-          />
-        ) : (
-          <img
-            src="images/scroll/inactiveLeftScroll.svg"
-            width={60}
-            height={60}
-          />
-        )}
-      </LeftScrollButton>
       <ProductListsContainer>
-        {productLists?.map((product) => {
-          return (
-            <>
-              <EachProduct
-                key={product.id + `${new Date()}`}
-                image={product.image}
-                name={product.name}
-                price={product.price}
-              />
-            </>
-          );
-        })}
+        <StyledSlider {...settings}>
+          {productLists?.map((product) => {
+            return (
+              <>
+                <EachProduct
+                  key={product.id + `${new Date()}`}
+                  image={product.image}
+                  name={product.name}
+                  price={product.price}
+                />
+              </>
+            );
+          })}
+        </StyledSlider>
       </ProductListsContainer>
-      <RightScrollButton
-        onMouseOver={() => setIsRightScrollButtonHover(true)}
-        onMouseOut={() => setIsRightScrollButtonHover(false)}
-      >
-        {isRightScrollButtonHover ? (
-          <img
-            src="/images/scroll/activeRightScroll.svg"
-            width={60}
-            height={60}
-          />
-        ) : (
-          <img
-            src="images/scroll/inactiveRightScroll.svg"
-            width={60}
-            height={60}
-          />
-        )}
-      </RightScrollButton>
     </Wrapper>
   );
 };
 
 export default ProductLists;
 
+const StyledSlider = styled(Slider)`
+  .slick-list {
+    width: 1050px;
+    margin: 0 auto;
+  }
+  .slick-prev::before,
+  .slick-next::before {
+    opacity: 0;
+    display: none;
+  }
+`;
+
 const Wrapper = styled.div`
   display: flex;
 `;
 
 const ProductListsContainer = styled.div`
+  padding: 0 30px;
   margin: auto;
   display: flex;
   width: 1050px;
@@ -121,13 +103,13 @@ const ProductListsContainer = styled.div`
   }
 `;
 
-const LeftScrollButton = styled.button`
-  margin-top: 130px;
-  margin-left: 120px;
-  margin-right: 10px;
+const NextScrollButton = styled.div`
+  top: calc(50% - 50px);
+  transform: translate(0%, -50%);
   width: 60px;
   height: 60px;
-  z-index: 1;
+  overflow: visible;
+  z-index: 2;
   background: none;
   border: none;
   &:hover {
@@ -135,15 +117,37 @@ const LeftScrollButton = styled.button`
   }
 `;
 
-const RightScrollButton = styled.button`
-  margin-top: 130px;
-  margin-right: 140px;
+const PrevScrollButton = styled.div`
+  top: calc(50% - 50px);
+  transform: translate(-10%, -50%);
   width: 60px;
   height: 60px;
-  z-index: 1;
+  overflow: visible;
+  z-index: 2;
   background: none;
   border: none;
   &:hover {
     cursor: pointer;
   }
 `;
+
+const settings = {
+  dots: false,
+  isFinite: true,
+  autoplay: false,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  centerMode: true,
+  centerPadding: '0px',
+  prevArrow: (
+    <PrevScrollButton>
+      <PrevArrow className={undefined} style={undefined} onClick={undefined} />
+    </PrevScrollButton>
+  ),
+  nextArrow: (
+    <NextScrollButton>
+      <NextArrow className={undefined} style={undefined} onClick={undefined} />
+    </NextScrollButton>
+  ),
+};
