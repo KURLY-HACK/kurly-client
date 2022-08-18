@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/header/Header';
 import ProductLists from '../components/main/ProductLists';
 import styled from 'styled-components';
+import RecommendLists from '../components/main/RecommendLists';
 
 const MainPage = () => {
   return (
@@ -10,7 +11,7 @@ const MainPage = () => {
       <MainText>구독 중인 컬리뷰가 추천하는 상품</MainText>
       <ProductLists />
       <MainText>신상품</MainText>
-      <ProductLists />
+      <RecommendLists />
     </div>
   );
 };
