@@ -19,28 +19,28 @@ export const reviewScoreSlice = createSlice({
     setFreshReviewScore: (
       state,
       action: PayloadAction<{
-        freshScore: number;
+        clicked: number;
       }>
     ) => {
-      state.freshScore = action.payload.freshScore;
+      state.freshScore = action.payload.clicked;
     },
     setTasteReviewScore: (
       state,
-      action: PayloadAction<{ tasteScroe: number }>
+      action: PayloadAction<{ clicked: number }>
     ) => {
-      state.tasteScroe = action.payload.tasteScroe;
+      state.tasteScroe = action.payload.clicked;
     },
     setDeliveryReviewScore: (
       state,
-      action: PayloadAction<{ deliveryScore: number }>
+      action: PayloadAction<{ clicked: number }>
     ) => {
-      state.deliveryScore = action.payload.deliveryScore;
+      state.deliveryScore = action.payload.clicked;
     },
     setTotalReviewScore: (
       state,
-      action: PayloadAction<{ totalScore: number }>
+      action: PayloadAction<{ clicked: number }>
     ) => {
-      state.totalScore = action.payload.totalScore;
+      state.totalScore = action.payload.clicked;
     },
   },
 });

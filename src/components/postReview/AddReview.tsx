@@ -1,20 +1,38 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { reviewScoreSlice } from '../../store/slices/review/reviewScoreSlice';
-import { useAppDispatch } from '../../store/store';
+import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
 import StarReview from './StarReview';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 const AddReview = () => {
   const [title, setTitle] = useState('');
   const [review, setReview] = useState('');
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const params = useParams();
 
+  const freshrStar = useAppSelector(
+    (state: RootState) => state.reviewscore.freshScore
+  );
+  const tasteStar = useAppSelector(
+    (state: RootState) => state.reviewscore.tasteScroe
+  );
+  const deliverStar = useAppSelector(
+    (state: RootState) => state.reviewscore.deliveryScore
+  );
+  const totalStar = useAppSelector(
+    (state: RootState) => state.reviewscore.totalScore
+  );
   const onSubmit = async (e: React.SyntheticEvent) => {
     //dispatch title, review, 별점은 전역에 저장해서 가져와야겠네요 아오
     //리뷰페이지로 이동
+    //freshStar, tasteStar .. 같이 dispatch
     setTitle('');
     setReview('');
     dispatch(reviewScoreSlice.actions.resetReviewScore());
+    navigate(`/detail/${params.id}`);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -62,19 +80,19 @@ const AddReview = () => {
         <StarReviewContainer>
           <StarContainer>
             <StarTitle>신선도</StarTitle>
-            <StarReview category={'fresh'} />
+            <StarReview category="fresh" />
           </StarContainer>
           <StarContainer>
             <StarTitle>맛</StarTitle>
-            <StarReview category={'taste'} />
+            <StarReview category="taste" />
           </StarContainer>
           <StarContainer>
             <StarTitle>배송상태</StarTitle>
-            <StarReview category={'deliver'} />
+            <StarReview category="deliver" />
           </StarContainer>
           <TotalStarContainer>
             <StarTitle>총점</StarTitle>
-            <StarReview category={'total'} />
+            <StarReview category="total" />
           </TotalStarContainer>
         </StarReviewContainer>
       </StarArea>
