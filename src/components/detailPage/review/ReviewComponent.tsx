@@ -1,32 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IReview } from '../../../lib/interface';
 
 const ReviewComponent = ({
-  review: { id, product, content, image, writer, date, help },
+  review: { review_id, product_name, member_name, date, contents, photo },
 }: {
-  review: {
-    id: number;
-    product: string;
-    content: string;
-    image: string;
-    writer: string;
-    date: string;
-    help: number;
-  };
+  review: IReview;
 }) => {
   return (
     <Container>
-      <Text>{id}</Text>
+      <Text>{review_id}</Text>
       <ContentWrapper>
-        {image && <img alt="preview" src={image} width={150} height={150} />}
-        <Contents image={image}>
-          <Title>{product}</Title>
-          <Description>{content}</Description>
+        {photo && <img alt="preview" src={photo} width={150} height={150} />}
+        <Contents image={photo}>
+          <Title>{product_name}</Title>
+          <Description>{contents}</Description>
         </Contents>
       </ContentWrapper>
-      <Text>{writer}</Text>
-      <Text>{date}</Text>
-      <Text>{help}</Text>
+      <Text>{member_name}</Text>
+      <Text>{date.slice(0, 10)}</Text>
+      <Text>1</Text>
     </Container>
   );
 };

@@ -1,22 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { IReview } from '../../../lib/interface';
 import FreshLineChart from '../../chart/FreshLineChart';
 import ReviewLineChart from '../../chart/ReviewLineChart';
 import ReviewList from '../../subscribeListPage/ReviewList';
 
-const Review = ({
-  review,
-}: {
-  review: {
-    id: number;
-    product: string;
-    content: string;
-    image: string;
-    writer: string;
-    date: string;
-    help: number;
-  }[];
-}) => {
+const Review = ({ review }: { review: IReview[] }) => {
   const [isFreshFood, setIsFreshFood] = useState(false);
   return (
     <Container>

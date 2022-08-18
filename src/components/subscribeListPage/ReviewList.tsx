@@ -1,22 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { IReview } from '../../lib/interface';
 import ReviewComponent from '../detailPage/review/ReviewComponent';
 import ReviewDetail from '../detailPage/review/ReviewDetail';
 
-const ReviewList = ({
-  review,
-}: {
-  review: {
-    id: number;
-    product: string;
-    content: string;
-    image: string;
-    writer: string;
-    date: string;
-    help: number;
-  }[];
-}) => {
-  const [selected, setSelected] = useState(0);
+const ReviewList = ({ review }: { review: IReview[] }) => {
+  const [selected, setSelected] = useState('0');
 
   return (
     <Container>
@@ -29,8 +18,11 @@ const ReviewList = ({
           <Column>도움</Column>
         </ReviewColumns>
         {review.map((data) => (
-          <section key={data.id} onClick={() => setSelected(data.id)}>
-            {selected === data.id ? (
+          <section
+            key={data.review_id}
+            onClick={() => setSelected(data.review_id)}
+          >
+            {selected === data.review_id ? (
               <ReviewDetail review={data} />
             ) : (
               <ReviewComponent review={data} />
