@@ -6,7 +6,7 @@ import FreshLineChart from '../../chart/FreshLineChart';
 import ReviewLineChart from '../../chart/ReviewLineChart';
 import ReviewList from '../../subscribeListPage/ReviewList';
 
-const Review = ({ review }: { review: IReview[] }) => {
+const Review = ({ review, id }: { review: IReview[]; id: string }) => {
   const navigate = useNavigate();
   const [isFreshFood, setIsFreshFood] = useState(false);
 
@@ -49,7 +49,9 @@ const Review = ({ review }: { review: IReview[] }) => {
         문의에 남겨주세요.
       </Description>
       <ReviewList review={review} />
-      <WriteButton onClick={() => navigate('/post')}>후기쓰기</WriteButton>
+      <WriteButton onClick={() => navigate(`/post/${id}`)}>
+        후기쓰기
+      </WriteButton>
     </Container>
   );
 };

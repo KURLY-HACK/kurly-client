@@ -1,16 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Header from '../components/header/Header';
 
 const LogIn = () => {
+  const [id, setId] = useState('');
+  const [pw, setPw] = useState('');
+
+  const onSubmit = async (e: React.SyntheticEvent) => {};
+
+  const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const {
+      target: { value },
+    } = e;
+    setId(value);
+  };
+
+  const handlePwChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const {
+      target: { value },
+    } = e;
+    setPw(value);
+  };
   return (
     <div>
       <Header />
       <LogInContainer>
         <LoginTitle>로그인</LoginTitle>
-        <LogInInput placeholder="아이디를 입력해주세요"></LogInInput>
-        <LogInInput placeholder="비밀번호를 입력해주세요"></LogInInput>
-        <LoginButton>로그인</LoginButton>
+        <LogInInput
+          type={'text'}
+          onChange={handleIdChange}
+          placeholder="아이디를 입력해주세요"
+        ></LogInInput>
+        <LogInInput
+          type={'password'}
+          onChange={handlePwChange}
+          placeholder="비밀번호를 입력해주세요"
+        ></LogInInput>
+        <LoginButton onClick={onSubmit}>로그인</LoginButton>
       </LogInContainer>
     </div>
   );

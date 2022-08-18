@@ -64,9 +64,11 @@ const review = [
 const Tabs = ({
   product_photo,
   detailed_photo,
+  id,
 }: {
   product_photo: string;
   detailed_photo: string;
+  id: string;
 }) => {
   const [selected, setSelected] = useState(1);
 
@@ -99,7 +101,7 @@ const Tabs = ({
           <img alt="information" src={detailed_photo} width={1007} />
         </Contents>
       )}
-      {selected === 3 && <Review review={review} />}
+      {selected === 3 && <Review review={review} id={id} />}
       {selected === 4 && <Question />}
     </Container>
   );
