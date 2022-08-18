@@ -62,7 +62,7 @@ const Question = () => {
 export default Question;
 
 const Container = styled.section`
-  margin-top: 70px;
+  margin-top: 50px;
   margin-bottom: 50px;
 
   line-height: 120%;

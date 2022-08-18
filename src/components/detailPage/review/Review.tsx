@@ -65,7 +65,7 @@ const Review = ({
 export default Review;
 
 const Container = styled.section`
-  margin-top: 70px;
+  margin-top: 30px;
   margin-bottom: 50px;
 
   line-height: 120%;
@@ -73,8 +73,9 @@ const Container = styled.section`
 const Title = styled.section`
   font-size: 13px;
   font-weight: 700;
-
   color: #333333;
+
+  margin-top: 50px;
 `;
 const Description = styled.section`
   font-size: 12px;

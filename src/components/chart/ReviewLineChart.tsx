@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import ApexCharts from 'react-apexcharts';
 
 const ReviewLineChart = () => {
