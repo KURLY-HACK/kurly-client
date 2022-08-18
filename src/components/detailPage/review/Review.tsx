@@ -22,7 +22,7 @@ const Review = ({ review, id }: { review: IReview[]; id: string }) => {
             월별 총 별점
           </ChangeGraphButton>
           <GraphContainer>
-            <FreshLineChart />
+            <FreshLineChart id={id} />
           </GraphContainer>
         </>
       ) : (
@@ -35,7 +35,7 @@ const Review = ({ review, id }: { review: IReview[]; id: string }) => {
             주간 상세 별점
           </ChangeGraphButton>
           <GraphContainer>
-            <ReviewLineChart />
+            <ReviewLineChart id={id} />
           </GraphContainer>
         </>
       )}

@@ -1,14 +1,21 @@
 import React from 'react';
 import ApexCharts from 'react-apexcharts';
 
-const ReviewLineChart = () => {
+const ReviewLineChart = ({ id }: { id: string }) => {
+  //dispatch할 때 id값 쿼리에 필요
+  const totalScores = [
+    { date: '2022-05-01', rate: 4.3 },
+    { date: '2022-06-01', rate: 4.0 },
+    { date: '2022-07-01', rate: 3.7 },
+    { date: '2022-08-01', rate: 4.0 },
+  ];
   return (
     <ApexCharts
       type="line"
       series={[
         {
           name: '총점',
-          data: [4.5, 4, 5, 3.5, 3.5, 4],
+          data: totalScores.map((score) => score['rate']),
         },
       ]}
       options={{
@@ -32,7 +39,12 @@ const ReviewLineChart = () => {
         },
         colors: ['#522772'],
         xaxis: {
-          categories: ['2월', '3월', '4월', '5월', '6월', '7월'],
+          categories: [
+            '2022년 05월',
+            '2022년 06월',
+            '2022년 07월',
+            '2022년 08월',
+          ],
         },
         yaxis: {
           min: 0,

@@ -1,23 +1,43 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from 'react';
 import ApexCharts from 'react-apexcharts';
 
-const FreshLineChart = () => {
+const FreshLineChart = ({ id }: { id: string }) => {
+  //dispatch할 때 id값 쿼리에 필요
+
+  const freshScores = [
+    { date: '4주 전', rate: 4.3 },
+    { date: '3주 전', rate: 4.0 },
+    { date: '2주 전', rate: 3.7 },
+    { date: '1주 전', rate: 4.0 },
+  ];
+  const tasteScores = [
+    { date: '4주 전', rate: 1 },
+    { date: '3주 전', rate: 2 },
+    { date: '2주 전', rate: 3 },
+    { date: '1주 전', rate: 4 },
+  ];
+  const deliveryScores = [
+    { date: '4주 전', rate: 4 },
+    { date: '3주 전', rate: 3 },
+    { date: '2주 전', rate: 2 },
+    { date: '1주 전', rate: 1 },
+  ];
+
   return (
     <ApexCharts
       type="line"
       series={[
         {
           name: '신선도',
-          data: [4.5, 4, 5, 3.5, 3.5, 4],
+          data: freshScores.map((score) => score['rate']),
         },
         {
           name: '맛',
-          data: [4, 4, 4, 4, 4, 4],
+          data: tasteScores.map((score) => score['rate']),
         },
         {
           name: '배송상태',
-          data: [5, 4, 3, 2, 2, 1],
+          data: deliveryScores.map((score) => score['rate']),
         },
       ]}
       options={{
@@ -49,14 +69,7 @@ const FreshLineChart = () => {
 
         colors: ['#7C93BD', '#FA622F', '#BD76FF'],
         xaxis: {
-          categories: [
-            '7일 전',
-            '6일 전',
-            '5일 전',
-            '4일 전',
-            '2일 전',
-            '1일 전',
-          ],
+          categories: ['4주 전', '3주 전', '2주 전', '1주 전'],
         },
         yaxis: {
           min: 0,
