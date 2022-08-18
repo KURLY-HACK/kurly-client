@@ -6,6 +6,7 @@ import {
   DetailPage,
   SubscribeListPage,
   SubscribePage,
+  PostReview,
 } from './pages';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/detail" element={<DetailPage />} />
         <Route path="/subscribe-list" element={<SubscribeListPage />} />
         <Route path="/subscribe" element={<SubscribePage />} />
+        <Route path="/post" element={<PostReview />} />
       </Routes>
     </section>
   );
