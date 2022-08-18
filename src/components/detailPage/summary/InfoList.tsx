@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const InfoList = ({
-  info: { title, description },
+  info: { title, content },
 }: {
-  info: { title: string; description: string };
+  info: { title: string; content: string };
 }) => {
   return (
     <Container>
       <Title>{title}</Title>
-      <Description>{description}</Description>
+      <Description>{content}</Description>
     </Container>
   );
 };
@@ -31,8 +31,10 @@ const Title = styled.section`
   width: 128px;
 `;
 const Description = styled.section`
-  font-size: 15px;
+  font-size: 13px;
   color: #666666;
 
   width: 350px;
+
+  line-height: 140%;
 `;

@@ -1,22 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { IReview } from '../../../lib/interface';
 import FreshLineChart from '../../chart/FreshLineChart';
 import ReviewLineChart from '../../chart/ReviewLineChart';
 import ReviewList from '../../subscribeListPage/ReviewList';
 
-const Review = ({
-  review,
-}: {
-  review: {
-    id: number;
-    product: string;
-    content: string;
-    image: string;
-    writer: string;
-    date: string;
-    help: number;
-  }[];
-}) => {
+const Review = ({ review }: { review: IReview[] }) => {
   const [isFreshFood, setIsFreshFood] = useState(false);
   return (
     <Container>
@@ -65,7 +54,7 @@ const Review = ({
 export default Review;
 
 const Container = styled.section`
-  margin-top: 70px;
+  margin-top: 30px;
   margin-bottom: 50px;
 
   line-height: 120%;
@@ -73,8 +62,9 @@ const Container = styled.section`
 const Title = styled.section`
   font-size: 13px;
   font-weight: 700;
-
   color: #333333;
+
+  margin-top: 50px;
 `;
 const Description = styled.section`
   font-size: 12px;

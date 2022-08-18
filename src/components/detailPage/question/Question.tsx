@@ -54,7 +54,7 @@ const Question = () => {
           </section>
         ))}
       </QuestionBox>
-      <WriteButton>후기쓰기</WriteButton>
+      <WriteButton>문의하기</WriteButton>
     </Container>
   );
 };
@@ -62,7 +62,7 @@ const Question = () => {
 export default Question;
 
 const Container = styled.section`
-  margin-top: 70px;
+  margin-top: 50px;
   margin-bottom: 50px;
 
   line-height: 120%;

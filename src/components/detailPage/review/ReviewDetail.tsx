@@ -1,34 +1,43 @@
 import React from 'react';
 import styled from 'styled-components';
+import { IReview } from '../../../lib/interface';
 import Rating from './Rating';
 
 const ReviewDetail = ({
-  review: { id, product, content, image, writer, date, help },
-}: {
   review: {
-    id: number;
-    product: string;
-    content: string;
-    image: string;
-    writer: string;
-    date: string;
-    help: number;
-  };
+    product_name,
+    contents,
+    rating,
+    fresh_score,
+    taste_score,
+    delivery_score,
+    member_name,
+    photo,
+  },
+}: {
+  review: IReview;
 }) => {
   return (
     <Container>
-      {image && (
+      {photo && (
         <Image>
-          <img alt="preview" src={image} width={560} />
+          <img alt="preview" src={photo} width={560} />
         </Image>
       )}
       <Contents>
-        <Rating />
-        <Title>{product}</Title>
-        <Description>{content}</Description>
+        <Rating
+          rate={
+            fresh_score && taste_score && delivery_score
+              ? [rating, taste_score, fresh_score, delivery_score]
+              : [rating]
+          }
+          name={member_name}
+        />
+        <Title>{product_name}</Title>
+        <Description>{contents}</Description>
       </Contents>
       <ButtonBox>
-        <HelpButton>도움이 돼요 {help}</HelpButton>
+        <HelpButton>도움이 돼요 1</HelpButton>
       </ButtonBox>
     </Container>
   );
