@@ -17,7 +17,7 @@ function App() {
         <Route path="/login" element={<LogIn />} />
         <Route path="/detail/:id" element={<DetailPage />} />
         <Route path="/subscribe-list" element={<SubscribeListPage />} />
-        <Route path="/post" element={<PostReview />} />
+        <Route path="/post/:id" element={<PostReview />} />
         <Route path="/subscribe/:id" element={<SubscribePage />} />
         <Route path="/*" element={<MainPage />} />
       </Routes>
