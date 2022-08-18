@@ -16,3 +16,14 @@ export interface IReview {
   contents: string;
   photo: string;
 }
+
+export interface IProduct {
+  id: string;
+  title: string;
+  price: number;
+  photo: string;
+  h1: string;
+  details: { title: string; content: string }[];
+  product_photo: string;
+  detailed_photo: string;
+}

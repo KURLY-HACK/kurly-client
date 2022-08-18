@@ -17,7 +17,9 @@ const ReviewComponent = ({
           <Description>{contents}</Description>
         </Contents>
       </ContentWrapper>
-      <Text>{member_name}</Text>
+      <Text>
+        {member_name.slice(0, 1)}*{member_name.slice(2)}
+      </Text>
       <Text>{date.slice(0, 10)}</Text>
       <Text>1</Text>
     </Container>
@@ -50,6 +52,8 @@ const ContentWrapper = styled.section`
 `;
 const Contents = styled.section<{ image: string }>`
   margin-left: ${({ image }) => image && 35}px;
+
+  width: 450px;
 `;
 const Title = styled.section`
   font-size: 15px;
@@ -57,4 +61,9 @@ const Title = styled.section`
 const Description = styled.section`
   font-size: 12px;
   margin-top: 20px;
+
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

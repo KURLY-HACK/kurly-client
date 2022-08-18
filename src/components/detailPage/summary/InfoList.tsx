@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const InfoList = ({
-  info: { title, description },
+  info: { title, content },
 }: {
-  info: { title: string; description: string };
+  info: { title: string; content: string };
 }) => {
   return (
     <Container>
       <Title>{title}</Title>
-      <Description>{description}</Description>
+      <Description>{content}</Description>
     </Container>
   );
 };

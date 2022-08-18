@@ -10,13 +10,17 @@ const review = [
     product_type: 0,
     product_name: '전용목장우유 900mL',
     contents:
-      '예전엔 우유가 이렇게 비싸단 생각은 안들었는데 브랜드 우유를 포함한 모든 생필품이 장난이 아닌 시대가 왔네요. 그럼에도 믿고 먹을 수 있는 연세우유를 2천원이 조금 안되는 금액으로 마실 수 있어...',
+      '예전엔 우유가 이렇게 비싸단 생각은 안들었는데 브랜드 우유를 포함한 모든 생필품이 장난이 아닌 시대가 왔네요. 그럼에도 믿고 먹을 수 있는 연세우유를 2천원이 조금 안되는 금액으로 마실 수 있어 좋습니다',
 
     member_id: '1',
     member_name: '작성자',
     date: '2022-08-18T00:00:00.000Z',
 
     rating: 2,
+    fresh_score: 5,
+    taste_score: 5,
+    delivery_score: 5,
+
     photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg',
   },
   {
@@ -30,8 +34,12 @@ const review = [
     date: '2022-08-18T00:00:00.000Z',
 
     contents:
-      '저는 주로 집에 있는 요거트메이커를 이용해서 그릭요거트를 만들어 먹어요. 그릭요거트에는 우유가 700ml 가까이 필요한데 시중에 있는 우유를 계속 사기엔 좀 비싸다는 생각이 들어서 비교적 가격이 저렴..',
+      '저는 주로 집에 있는 요거트메이커를 이용해서 그릭요거트를 만들어 먹어요. 그릭요거트에는 우유가 700ml 가까이 필요한데 시중에 있는 우유를 계속 사기엔 좀 비싸다는 생각이 들어서 비교적 가격이 저렴하고 좋습니다',
     rating: 5,
+    fresh_score: 4,
+    taste_score: 4,
+    delivery_score: 4,
+
     photo: '',
   },
   {
@@ -46,11 +54,20 @@ const review = [
 
     contents: '맛있어요~!',
     rating: 4,
+    fresh_score: 2,
+    taste_score: 1,
+    delivery_score: 3,
     photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg',
   },
 ];
 
-const Tabs = () => {
+const Tabs = ({
+  product_photo,
+  detailed_photo,
+}: {
+  product_photo: string;
+  detailed_photo: string;
+}) => {
   const [selected, setSelected] = useState(1);
 
   return (
@@ -74,12 +91,12 @@ const Tabs = () => {
       </TabBox>
       {selected === 1 && (
         <Contents>
-          <img alt="contents" src="" width={1007} />
+          <img alt="contents" src={product_photo} width={1007} />
         </Contents>
       )}
       {selected === 2 && (
         <Contents>
-          <img alt="information" src="" width={1007} />
+          <img alt="information" src={detailed_photo} width={1007} />
         </Contents>
       )}
       {selected === 3 && <Review review={review} />}

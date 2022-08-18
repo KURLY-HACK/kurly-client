@@ -4,7 +4,16 @@ import { IReview } from '../../../lib/interface';
 import Rating from './Rating';
 
 const ReviewDetail = ({
-  review: { product_name, contents, rating, member_name, photo },
+  review: {
+    product_name,
+    contents,
+    rating,
+    fresh_score,
+    taste_score,
+    delivery_score,
+    member_name,
+    photo,
+  },
 }: {
   review: IReview;
 }) => {
@@ -16,7 +25,14 @@ const ReviewDetail = ({
         </Image>
       )}
       <Contents>
-        <Rating rate={[rating]} name={member_name} />
+        <Rating
+          rate={
+            fresh_score && taste_score && delivery_score
+              ? [rating, taste_score, fresh_score, delivery_score]
+              : [rating]
+          }
+          name={member_name}
+        />
         <Title>{product_name}</Title>
         <Description>{contents}</Description>
       </Contents>

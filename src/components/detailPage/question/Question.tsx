@@ -54,7 +54,7 @@ const Question = () => {
           </section>
         ))}
       </QuestionBox>
-      <WriteButton>후기쓰기</WriteButton>
+      <WriteButton>문의하기</WriteButton>
     </Container>
   );
 };
