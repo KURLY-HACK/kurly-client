@@ -1,19 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Stars from './Stars';
 
 const Rating = () => {
+  const [fresh, setFresh] = useState(true);
+
   return (
     <Container>
       <StarBox>
         <Text>총점</Text>
         <Stars rate={1} />
-        <Text>맛</Text>
-        <Stars rate={2} />
-        <Text>신선도</Text>
-        <Stars rate={4} />
-        <Text>배송상태</Text>
-        <Stars rate={5} />
+        {fresh && (
+          <>
+            <Text>맛</Text>
+            <Stars rate={2} />
+            <Text>신선도</Text>
+            <Stars rate={4} />
+            <Text>배송상태</Text>
+            <Stars rate={5} />
+          </>
+        )}
       </StarBox>
       <Writer>김*연</Writer>
     </Container>
