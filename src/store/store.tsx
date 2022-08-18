@@ -5,9 +5,12 @@ import {
 } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+import reviewScoreReducer from './slices/review/reviewScoreSlice';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    reviewscore: reviewScoreReducer,
+  },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
 

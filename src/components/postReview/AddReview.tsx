@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { reviewScoreSlice } from '../../store/slices/review/reviewScoreSlice';
+import { useAppDispatch } from '../../store/store';
 import StarReview from './StarReview';
 
 const AddReview = () => {
   const [title, setTitle] = useState('');
   const [review, setReview] = useState('');
+  const dispatch = useAppDispatch();
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     //dispatch title, review, 별점은 전역에 저장해서 가져와야겠네요 아오
+    //리뷰페이지로 이동
     setTitle('');
     setReview('');
+    dispatch(reviewScoreSlice.actions.resetReviewScore());
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
