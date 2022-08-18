@@ -15,10 +15,10 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LogIn />} />
-        <Route path="/detail" element={<DetailPage />} />
+        <Route path="/detail/:id" element={<DetailPage />} />
         <Route path="/subscribe-list" element={<SubscribeListPage />} />
-        <Route path="/subscribe" element={<SubscribePage />} />
         <Route path="/post" element={<PostReview />} />
+        <Route path="/subscribe/:id" element={<SubscribePage />} />
         <Route path="/*" element={<MainPage />} />
       </Routes>
     </section>

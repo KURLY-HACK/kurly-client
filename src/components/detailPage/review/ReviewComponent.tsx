@@ -31,7 +31,7 @@ const ReviewComponent = ({
           <Description>{contents}</Description>
         </Contents>
       </ContentWrapper>
-      <Text onClick={() => navigate('/subscribe')}>
+      <Text onClick={() => navigate(`/subscribe/${member_id}`)}>
         {member_name.slice(0, 1)}*{member_name.slice(2)}
       </Text>
       <Text>{date.slice(0, 10)}</Text>

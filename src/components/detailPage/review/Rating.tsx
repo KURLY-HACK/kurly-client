@@ -30,7 +30,7 @@ const Rating = ({
           </>
         )}
       </StarBox>
-      <Writer onClick={() => navigate('/subscribe')}>{name}</Writer>
+      <Writer onClick={() => navigate(`/subscribe/${id}`)}>{name}</Writer>
     </Container>
   );
 };
