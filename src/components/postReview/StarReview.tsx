@@ -1,13 +1,28 @@
+import { click } from '@testing-library/user-event/dist/click';
 import React, { FC, useState } from 'react';
 import styled from 'styled-components';
+import { reviewScoreSlice } from '../../store/slices/review/reviewScoreSlice';
+import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
+import { useNavigate } from 'react-router-dom';
 
-interface Props {
-  category: string;
-}
-const StarReview: FC<Props> = (category) => {
+const StarReview = ({ category }: { category: string }) => {
   const [hovered, setHovered] = useState<number>(0);
   const [clicked, setClicked] = useState<number>(0);
-  console.log(clicked);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  if (category === 'fresh') {
+    dispatch(reviewScoreSlice.actions.setFreshReviewScore({ clicked }));
+  }
+  if (category === 'taste') {
+    dispatch(reviewScoreSlice.actions.setTasteReviewScore({ clicked }));
+  }
+  if (category === 'deliver') {
+    dispatch(reviewScoreSlice.actions.setDeliveryReviewScore({ clicked }));
+  }
+  if (category === 'total') {
+    dispatch(reviewScoreSlice.actions.setTotalReviewScore({ clicked }));
+  }
   return (
     <Wrapper>
       <StarContainer>
