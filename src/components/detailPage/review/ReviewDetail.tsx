@@ -1,22 +1,27 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IReview } from '../../../lib/interface';
 import Rating from './Rating';
 
 const ReviewDetail = ({
   review: {
+    product_id,
     product_name,
     contents,
     rating,
     fresh_score,
     taste_score,
     delivery_score,
+    member_id,
     member_name,
     photo,
   },
 }: {
   review: IReview;
 }) => {
+  const navigate = useNavigate();
+
   return (
     <Container>
       {photo && (
@@ -32,8 +37,11 @@ const ReviewDetail = ({
               : [rating]
           }
           name={member_name}
+          id={member_id}
         />
-        <Title>{product_name}</Title>
+        <Title onClick={() => navigate(`/detail/${product_id}`)}>
+          {product_name}
+        </Title>
         <Description>{contents}</Description>
       </Contents>
       <ButtonBox>
@@ -63,6 +71,8 @@ const Contents = styled.section`
 const Title = styled.section`
   font-size: 15px;
   margin-top: 15px;
+
+  cursor: pointer;
 `;
 const Description = styled.section`
   font-size: 12px;

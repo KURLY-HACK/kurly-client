@@ -19,6 +19,7 @@ function App() {
         <Route path="/subscribe-list" element={<SubscribeListPage />} />
         <Route path="/subscribe" element={<SubscribePage />} />
         <Route path="/post" element={<PostReview />} />
+        <Route path="/*" element={<MainPage />} />
       </Routes>
     </section>
   );

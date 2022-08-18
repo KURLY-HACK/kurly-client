@@ -1,8 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Stars from './Stars';
 
-const Rating = ({ rate, name }: { rate: number[]; name: string }) => {
+const Rating = ({
+  rate,
+  name,
+  id,
+}: {
+  rate: number[];
+  name: string;
+  id: string;
+}) => {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <StarBox>
@@ -19,7 +30,7 @@ const Rating = ({ rate, name }: { rate: number[]; name: string }) => {
           </>
         )}
       </StarBox>
-      <Writer>{name}</Writer>
+      <Writer onClick={() => navigate('/subscribe')}>{name}</Writer>
     </Container>
   );
 };
@@ -45,4 +56,6 @@ const Writer = styled.section`
   color: #333333;
 
   letter-spacing: 2px;
+
+  cursor: pointer;
 `;
