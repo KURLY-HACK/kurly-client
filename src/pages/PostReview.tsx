@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Header from '../components/header/Header';
+import AddReview from '../components/postReview/AddReview';
 import ProductInfo from '../components/postReview/ProductInfo';
 
 const PostReview = () => {
@@ -13,6 +14,7 @@ const PostReview = () => {
           image={'/images/testProduct.png'}
           productName={'[언더프레셔] 골든에라 블렌드 원두  '}
         />
+        <AddReview />
       </ReviewContainer>
     </Wrapper>
   );
