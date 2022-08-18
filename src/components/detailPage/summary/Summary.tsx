@@ -15,6 +15,20 @@ const infoList = [
     title: '판매자',
     description: '컬리',
   },
+  {
+    title: '포장타입',
+    description:
+      '냉장 (종이포장)\n택배배송은 에코 포장이 스티로폼으로 대체됩니다.',
+  },
+  {
+    title: '중량/용량',
+    description: '900mL',
+  },
+  {
+    title: '알레르기정보',
+    description:
+      '- 우유함유\n- 본 제품은 대두, 땅콩, 알류, 밀, 복숭아, 토마토, 호두, 메밀, 아황산류, 잣을 사용한 제품과 같은 시설에서 제조하고 있습니다',
+  },
 ];
 
 const Summary = () => {

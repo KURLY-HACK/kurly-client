@@ -31,8 +31,10 @@ const Title = styled.section`
   width: 128px;
 `;
 const Description = styled.section`
-  font-size: 15px;
+  font-size: 13px;
   color: #666666;
 
   width: 350px;
+
+  line-height: 140%;
 `;
