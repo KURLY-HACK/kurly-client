@@ -41,11 +41,16 @@ const Summary = () => {
         src="https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg"
       />
       <Information>
-        <Text size={13} color="999999" margin={0} strong={false}>
-          샛별배송
-        </Text>
-        <Text size={24} color="333333" margin={6} strong={true}>
-          전용목장우유 900mL
+        <section style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Text size={25} color="333333" margin={3} strong={true}>
+            전용목장우유 900mL
+          </Text>
+          <ShareButton>
+            <img alt="share" src="/images/detailPage/share.svg" />
+          </ShareButton>
+        </section>
+        <Text size={14} color="b5b5b5" margin={7} strong={false}>
+          가격, 퀄리티 모두 만족스러운 1A등급 우유
         </Text>
         <section style={{ marginTop: 20, display: 'flex' }}>
           <Text size={28} color="333333" margin={0} strong={true}>
@@ -55,9 +60,6 @@ const Summary = () => {
             &nbsp;원
           </Text>
         </section>
-        <Text size={14} color="5f0080" margin={17} strong={false}>
-          로그인 후, 적립 혜택이 제공됩니다.
-        </Text>
         <InfoListBox>
           {infoList.map((info, idx) => (
             <InfoList key={idx} info={info} />
@@ -110,4 +112,7 @@ const Description = styled.section`
   justify-content: flex-end;
 
   margin-top: 10px;
+`;
+const ShareButton = styled.section`
+  cursor: pointer;
 `;
