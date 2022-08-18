@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IReview } from '../../../lib/interface';
 import FreshLineChart from '../../chart/FreshLineChart';
@@ -6,7 +7,9 @@ import ReviewLineChart from '../../chart/ReviewLineChart';
 import ReviewList from '../../subscribeListPage/ReviewList';
 
 const Review = ({ review }: { review: IReview[] }) => {
+  const navigate = useNavigate();
   const [isFreshFood, setIsFreshFood] = useState(false);
+
   return (
     <Container>
       {isFreshFood ? (
@@ -46,7 +49,7 @@ const Review = ({ review }: { review: IReview[] }) => {
         문의에 남겨주세요.
       </Description>
       <ReviewList review={review} />
-      <WriteButton>후기쓰기</WriteButton>
+      <WriteButton onClick={() => navigate('/post')}>후기쓰기</WriteButton>
     </Container>
   );
 };

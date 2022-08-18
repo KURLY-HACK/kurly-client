@@ -41,6 +41,11 @@ const LogInInput = styled.input`
   height: 54px;
   border: 1px solid #dddfe1;
   border-radius: 5px;
+
+  :focus {
+    outline: none;
+    border: 1px solid #333333;
+  }
 `;
 
 const LoginButton = styled.div`
