@@ -5,19 +5,25 @@ const AddReview = () => {
   const [title, setTitle] = useState('');
   const [review, setReview] = useState('');
 
-  const onSubmit = () => {
+  const onSubmit = async (e: React.SyntheticEvent) => {
     //dispatch title, review, 별점.
+    setTitle('');
+    setReview('');
   };
 
-  const handleInputChange = (
-    e:
-      | React.ChangeEvent<HTMLTextAreaElement>
-      | React.ChangeEvent<HTMLInputElement>
-  ): void => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const {
       target: { value },
     } = e;
     setTitle(value);
+  };
+
+  const handleTextAreaChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ): void => {
+    const {
+      target: { value },
+    } = e;
     setReview(value);
   };
 
@@ -36,7 +42,7 @@ const AddReview = () => {
         <Review>후기작성</Review>
         <ReviewInput
           value={review}
-          onChange={handleInputChange}
+          onChange={handleTextAreaChange}
           placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 되며,&#13;
 일반식품의 효능이나 효과 등에 오해의 소지가 있는 내용을 작성 시 검토 후 비공개 조치될 수 있습니다. &#13;
 반품/환불 문의는 1:1문의로 가능합니다.  "
@@ -48,7 +54,7 @@ const AddReview = () => {
       <StarArea>
         <Star>별점등록</Star>
       </StarArea>
-      <Submit onSubmit={onSubmit}>등록하기 </Submit>
+      <Submit onClick={onSubmit}>등록하기 </Submit>
     </Wrapper>
   );
 };
