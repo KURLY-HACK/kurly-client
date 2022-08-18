@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import StarReview from './StarReview';
 
 const AddReview = () => {
   const [title, setTitle] = useState('');
   const [review, setReview] = useState('');
 
   const onSubmit = async (e: React.SyntheticEvent) => {
-    //dispatch title, review, 별점.
+    //dispatch title, review, 별점은 전역에 저장해서 가져와야겠네요 아오
     setTitle('');
     setReview('');
   };
@@ -53,6 +54,16 @@ const AddReview = () => {
       </ImgArea>
       <StarArea>
         <Star>별점등록</Star>
+        <div>
+          <StarTitle>신선도</StarTitle>
+          <StarReview category={'fresh'} />
+          <StarTitle>맛</StarTitle>
+          <StarReview category={'taste'} />
+          <StarTitle>배송상태</StarTitle>
+          <StarReview category={'deliver'} />
+          <StarTitle>총점</StarTitle>
+          <StarReview category={'total'} />
+        </div>
       </StarArea>
       <Submit onClick={onSubmit}>등록하기 </Submit>
     </Wrapper>
@@ -169,3 +180,5 @@ const Submit = styled.button`
     cursor: pointer;
   }
 `;
+
+const StarTitle = styled.div``;
