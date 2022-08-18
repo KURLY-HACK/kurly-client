@@ -7,8 +7,8 @@ import 'slick-carousel/slick/slick-theme.css';
 import PrevArrow from './PrevArrow';
 import NextArrow from './NextArrow';
 
-const ProductLists = () => {
-  const productLists = [
+const RecommendLists = () => {
+  const recommendLists = [
     {
       id: '1', // 상품 id
       title: '[연세우유 x 마켓컬리] 전용목장우유 900mL', // 상품 이름
@@ -51,7 +51,7 @@ const ProductLists = () => {
     <Wrapper>
       <ProductListsContainer>
         <StyledSlider {...settings}>
-          {productLists?.map((product) => {
+          {recommendLists?.map((product) => {
             return (
               <>
                 <EachProduct
@@ -70,7 +70,7 @@ const ProductLists = () => {
   );
 };
 
-export default ProductLists;
+export default RecommendLists;
 
 const StyledSlider = styled(Slider)`
   .slick-list {
