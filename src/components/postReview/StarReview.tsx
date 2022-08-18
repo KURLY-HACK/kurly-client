@@ -18,9 +18,17 @@ const StarReview: FC<Props> = (category) => {
             onClick={() => setClicked(el)}
           >
             {clicked >= el || hovered >= el ? (
-              <img src={'/images/detailPage/star-active.svg'} />
+              <img
+                width={22}
+                height={22}
+                src={'/images/detailPage/star-active.svg'}
+              />
             ) : (
-              <img src={'/images/detailPage/star-inactive.svg'} />
+              <img
+                width={22}
+                height={22}
+                src={'/images/detailPage/star-inactive.svg'}
+              />
             )}
           </Star>
         ))}
@@ -32,10 +40,14 @@ const StarReview: FC<Props> = (category) => {
 export default StarReview;
 
 const Wrapper = styled.div`
+  margin-top: 5px;
   padding: 0 10px;
+  padding-left: 30px;
+  height: 25px;
 `;
 
 const Star = styled.div`
+  height: 25px;
   &:hover {
     cursor: pointer;
   }

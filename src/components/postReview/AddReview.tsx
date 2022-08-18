@@ -54,16 +54,24 @@ const AddReview = () => {
       </ImgArea>
       <StarArea>
         <Star>별점등록</Star>
-        <div>
-          <StarTitle>신선도</StarTitle>
-          <StarReview category={'fresh'} />
-          <StarTitle>맛</StarTitle>
-          <StarReview category={'taste'} />
-          <StarTitle>배송상태</StarTitle>
-          <StarReview category={'deliver'} />
-          <StarTitle>총점</StarTitle>
-          <StarReview category={'total'} />
-        </div>
+        <StarReviewContainer>
+          <StarContainer>
+            <StarTitle>신선도</StarTitle>
+            <StarReview category={'fresh'} />
+          </StarContainer>
+          <StarContainer>
+            <StarTitle>맛</StarTitle>
+            <StarReview category={'taste'} />
+          </StarContainer>
+          <StarContainer>
+            <StarTitle>배송상태</StarTitle>
+            <StarReview category={'deliver'} />
+          </StarContainer>
+          <TotalStarContainer>
+            <StarTitle>총점</StarTitle>
+            <StarReview category={'total'} />
+          </TotalStarContainer>
+        </StarReviewContainer>
       </StarArea>
       <Submit onClick={onSubmit}>등록하기 </Submit>
     </Wrapper>
@@ -149,7 +157,7 @@ const Img = styled.div`
 
 const StarArea = styled.div`
   width: 1007px;
-  height: 165px;
+  height: 160px;
   border-bottom: 1px solid #dddfe1;
   display: flex;
   margin-bottom: 50px;
@@ -157,7 +165,7 @@ const StarArea = styled.div`
 
 const Star = styled.div`
   width: 110px;
-  height: 165px;
+  height: 160px;
   background-color: #f7f7f7;
   text-align: center;
   line-height: 165px;
@@ -181,4 +189,28 @@ const Submit = styled.button`
   }
 `;
 
-const StarTitle = styled.div``;
+const StarTitle = styled.div`
+  width: 110px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 40px;
+  color: #999999;
+  border-right: 1px solid #dddfe1;
+`;
+
+const StarContainer = styled.div`
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+`;
+
+const StarReviewContainer = styled.div``;
+
+const TotalStarContainer = styled.div`
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+  width: 888px;
+  border-top: 1px solid #dddfe1;
+`;
