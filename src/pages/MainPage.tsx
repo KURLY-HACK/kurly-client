@@ -9,9 +9,9 @@ const MainPage = () => {
     <div>
       <Header />
       <MainText>구독 중인 컬리뷰가 추천하는 상품</MainText>
-      <ProductLists />
-      <MainText>신상품</MainText>
       <RecommendLists />
+      <MainText>신상품</MainText>
+      <ProductLists />
     </div>
   );
 };
