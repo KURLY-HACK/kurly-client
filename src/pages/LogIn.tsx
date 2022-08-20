@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Header from '../components/header/Header';
+import { login } from '../store/slices/login/loginSlice';
+import { RootState, useAppDispatch, useAppSelector } from '../store/store';
 
 const LogIn = () => {
   const [id, setId] = useState('');
-  const [pw, setPw] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useAppDispatch();
 
-  const onSubmit = async (e: React.SyntheticEvent) => {};
+  const onSubmit = async (e: React.SyntheticEvent) => {
+    dispatch(login({ id, password }));
+  };
 
+  const token = useAppSelector((state: RootState) => state.login.data);
+  const success = useAppSelector((state: RootState) => state.login.success);
+
+  console.log(id, password);
+  console.log('👾', token, success);
   const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const {
       target: { value },
@@ -19,8 +29,9 @@ const LogIn = () => {
     const {
       target: { value },
     } = e;
-    setPw(value);
+    setPassword(value);
   };
+
   return (
     <div>
       <Header />
@@ -28,11 +39,13 @@ const LogIn = () => {
         <LoginTitle>로그인</LoginTitle>
         <LogInInput
           type={'text'}
+          value={id}
           onChange={handleIdChange}
           placeholder="아이디를 입력해주세요"
         ></LogInInput>
         <LogInInput
           type={'password'}
+          value={password}
           onChange={handlePwChange}
           placeholder="비밀번호를 입력해주세요"
         ></LogInInput>
