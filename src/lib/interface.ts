@@ -39,3 +39,16 @@ export interface IMainProductLists {
   pending: boolean;
   products: IMainProduct[];
 }
+
+export interface ILogin {
+  id: string;
+  password: string;
+}
+
+export interface ILoginState {
+  pending: boolean;
+  success: boolean;
+  message: null;
+  errors: null;
+  data: string;
+}

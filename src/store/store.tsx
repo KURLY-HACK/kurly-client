@@ -7,11 +7,12 @@ import logger from 'redux-logger';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import reviewScoreReducer from './slices/review/reviewScoreSlice';
 import getMainProductReducer from './slices/main/getMainProductSlice';
-
+import loginReducer from './slices/login/loginSlice';
 export const store = configureStore({
   reducer: {
     reviewscore: reviewScoreReducer,
     mainproduct: getMainProductReducer,
+    login: loginReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
