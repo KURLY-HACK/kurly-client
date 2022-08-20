@@ -1,39 +1,36 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { IMainProductLists } from '../../../lib/interface';
-
 const initialState: IMainProductLists = {
   pending: false,
   products: [],
 };
 
-export const getMainProductThunk = createAsyncThunk(
-  'mainproduct/getmainproduct',
+export const getRecommendedThunk = createAsyncThunk(
+  'recommend/getrecommended',
   async (thunkAPI) => {
-    const response = await axios.get('api/products');
+    const response = await axios.get('api/kurlyviews/products');
     return response.data;
   }
 );
 
-export const getMainProductSlice = createSlice({
-  name: 'mainproduct',
+export const getRecommendedSlice = createSlice({
+  name: 'recommend',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getMainProductThunk.pending, (state) => {
+      .addCase(getRecommendedThunk.pending, (state) => {
         state.pending = true;
       })
-
-      .addCase(getMainProductThunk.fulfilled, (state, action) => {
+      .addCase(getRecommendedThunk.fulfilled, (state, action) => {
         state.pending = false;
         state.products = action.payload.products;
       })
-
-      .addCase(getMainProductThunk.rejected, (state, action) => {
+      .addCase(getRecommendedThunk.rejected, (state, action) => {
         state.pending = false;
       });
   },
 });
 
-export default getMainProductSlice.reducer;
+export default getRecommendedSlice.reducer;

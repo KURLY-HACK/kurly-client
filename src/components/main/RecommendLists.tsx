@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import PrevArrow from './PrevArrow';
 import NextArrow from './NextArrow';
 import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
-import { getRecommendedThunk } from '../../store/slices/main/getMainProductSlice';
+import { getRecommendedThunk } from '../../store/slices/main/getRecommendedSlice';
 
 const RecommendLists = () => {
   //   const recommendLists = [
@@ -50,7 +50,7 @@ const RecommendLists = () => {
   //   ];
 
   const recommendLists = useAppSelector(
-    (state: RootState) => state.mainproduct.products
+    (state: RootState) => state.recommend.products
   );
   const dispatch = useAppDispatch();
   useEffect(() => {
