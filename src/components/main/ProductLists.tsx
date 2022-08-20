@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import EachProduct from './EachProduct';
 import Slider from 'react-slick';
@@ -6,46 +6,56 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import PrevArrow from './PrevArrow';
 import NextArrow from './NextArrow';
+import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
+import { getMainProductThunk } from '../../store/slices/main/getMainProductSlice';
 
 const ProductLists = () => {
-  const productLists = [
-    {
-      id: '1', // 상품 id
-      title: '[연세우유 x 마켓컬리] 전용목장우유 900mL', // 상품 이름
-      price: 2070, // 상품 가격
-      photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg', // 상품 사진
-    },
-    {
-      id: '2', // 상품 id
-      title: '[KF365]DOLE 실속 바나나 1kg(필리핀)', // 상품 이름
-      price: 3700, // 상품 가격
-      photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg', // 상품 사진
-    },
-    {
-      id: '1', // 상품 id
-      title: '[연세우유 x 마켓컬리] 전용목장우유 900mL', // 상품 이름
-      price: 2070, // 상품 가격
-      photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg', // 상품 사진
-    },
-    {
-      id: '2', // 상품 id
-      title: '[KF365]DOLE 실속 바나나 1kg(필리핀)', // 상품 이름
-      price: 3700, // 상품 가격
-      photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg', // 상품 사진
-    },
-    {
-      id: '1', // 상품 id
-      title: '[연세우유 x 마켓컬리] 전용목장우유 900mL', // 상품 이름
-      price: 2070, // 상품 가격
-      photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg', // 상품 사진
-    },
-    {
-      id: '2', // 상품 id
-      title: '[KF365]DOLE 실속 바나나 1kg(필리핀)', // 상품 이름
-      price: 3700, // 상품 가격
-      photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg', // 상품 사진
-    },
-  ];
+  // const productLists = [
+  //   {
+  //     id: '1', // 상품 id
+  //     title: '[연세우유 x 마켓컬리] 전용목장우유 900mL', // 상품 이름
+  //     price: 2070, // 상품 가격
+  //     photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg', // 상품 사진
+  //   },
+  //   {
+  //     id: '2', // 상품 id
+  //     title: '[KF365]DOLE 실속 바나나 1kg(필리핀)', // 상품 이름
+  //     price: 3700, // 상품 가격
+  //     photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg', // 상품 사진
+  //   },
+  //   {
+  //     id: '1', // 상품 id
+  //     title: '[연세우유 x 마켓컬리] 전용목장우유 900mL', // 상품 이름
+  //     price: 2070, // 상품 가격
+  //     photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg', // 상품 사진
+  //   },
+  //   {
+  //     id: '2', // 상품 id
+  //     title: '[KF365]DOLE 실속 바나나 1kg(필리핀)', // 상품 이름
+  //     price: 3700, // 상품 가격
+  //     photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg', // 상품 사진
+  //   },
+  //   {
+  //     id: '1', // 상품 id
+  //     title: '[연세우유 x 마켓컬리] 전용목장우유 900mL', // 상품 이름
+  //     price: 2070, // 상품 가격
+  //     photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg', // 상품 사진
+  //   },
+  //   {
+  //     id: '2', // 상품 id
+  //     title: '[KF365]DOLE 실속 바나나 1kg(필리핀)', // 상품 이름
+  //     price: 3700, // 상품 가격
+  //     photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg', // 상품 사진
+  //   },
+  // ];
+
+  const productLists = useAppSelector(
+    (state: RootState) => state.mainproduct.products
+  );
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getMainProductThunk());
+  }, []);
 
   return (
     <Wrapper>

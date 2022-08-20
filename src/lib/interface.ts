@@ -27,3 +27,15 @@ export interface IProduct {
   product_photo: string;
   detailed_photo: string;
 }
+
+export interface IMainProduct {
+  id: string;
+  title: string;
+  price: number;
+  photo: string;
+}
+
+export interface IMainProductLists {
+  pending: boolean;
+  products: IMainProduct[];
+}
