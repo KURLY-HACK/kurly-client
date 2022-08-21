@@ -20,7 +20,6 @@ export const getProductThunk = createAsyncThunk(
   'product/getProduct',
   async (id: string, thunkAPI) => {
     const response = await axios.get(`api/products/${id}`);
-    console.log(response);
     return response.data;
   }
 );
@@ -36,7 +35,7 @@ export const getProductSlice = createSlice({
       })
       .addCase(getProductThunk.fulfilled, (state, action) => {
         state.pending = false;
-        state.product = action.payload.product;
+        state.product = action.payload;
       })
       .addCase(getProductThunk.rejected, (state, action) => {
         state.pending = false;

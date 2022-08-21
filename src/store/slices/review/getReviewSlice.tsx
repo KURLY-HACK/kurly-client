@@ -11,7 +11,6 @@ export const getReviewThunk = createAsyncThunk(
   'review/getReview',
   async (id: string, thunkAPI) => {
     const response = await axios.get(`api/products/${id}/review`);
-    console.log(response);
     return response.data;
   }
 );
@@ -27,7 +26,7 @@ export const getReviewSlice = createSlice({
       })
       .addCase(getReviewThunk.fulfilled, (state, action) => {
         state.pending = false;
-        state.review = action.payload.review;
+        state.review = action.payload.reviews;
       })
       .addCase(getReviewThunk.rejected, (state, action) => {
         state.pending = false;

@@ -34,8 +34,11 @@ const LogIn = () => {
   const dispatch = useAppDispatch();
 
   const onSubmit = async (e: React.SyntheticEvent) => {
-    dispatch(login({ id, password }));
-    showToast();
+    try {
+      await dispatch(login({ id, password })).unwrap();
+    } catch (err) {
+      showToast();
+    }
   };
 
   const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

@@ -56,6 +56,8 @@ const SubscribeListPage = () => {
   const review = useAppSelector(
     (state: RootState) => state.subscribeList.subscribeList
   );
+  const { name } = useAppSelector((state: RootState) => state.login);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -67,7 +69,7 @@ const SubscribeListPage = () => {
       <Header />
       <ReviewBox>
         <Title>
-          <Name>주효정님</Name>의 구독 리스트입니다
+          <Name>{name}님</Name>의 구독 리스트입니다
         </Title>
         <ReviewList review={review} />
       </ReviewBox>
