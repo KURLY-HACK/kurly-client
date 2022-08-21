@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { reviewScoreSlice } from '../../store/slices/review/reviewScoreSlice';
 import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
@@ -13,9 +13,9 @@ const AddReview = ({ product_type }: { product_type: number }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const params = useParams();
-  const [fresh_score, setFreshScore] = useState(-1);
-  const [taste_score, setTasteScore] = useState(-1);
-  const [delivery_score, setDeliveryScore] = useState(-1);
+  const [fresh_score, setFreshScore] = useState(0);
+  const [taste_score, setTasteScore] = useState(0);
+  const [delivery_score, setDeliveryScore] = useState(0);
 
   const product = useAppSelector((state: RootState) => state.product.product);
   const product_id = product.id;
@@ -33,6 +33,19 @@ const AddReview = ({ product_type }: { product_type: number }) => {
   const rating = useAppSelector(
     (state: RootState) => state.reviewscore.totalScore
   );
+
+  useEffect(() => {
+    if (product_type === 1) {
+      setFreshScore(freshStar);
+      setTasteScore(taseStar);
+      setDeliveryScore(deliveryStar);
+    } else {
+      setFreshScore(-1);
+      setTasteScore(-1);
+      setDeliveryScore(-1);
+    }
+  }, []);
+
   const onSubmit = async (e: React.SyntheticEvent) => {
     //dispatch title, review, 별점은 전역에 저장해서 가져와야겠네요 아오
     //리뷰페이지로 이동
@@ -41,39 +54,18 @@ const AddReview = ({ product_type }: { product_type: number }) => {
     setContents('');
     dispatch(reviewScoreSlice.actions.resetReviewScore());
     navigate(`/detail/${params.id}`);
-    if (product_type === 1) {
-      setFreshScore(freshStar);
-      setTasteScore(taseStar);
-      setDeliveryScore(deliveryStar);
-      dispatch(
-        postReview({
-          product_id,
-          product_name,
-          product_type,
-          rating,
-          fresh_score,
-          taste_score,
-          delivery_score,
-          contents,
-        })
-      );
-    } else {
-      setFreshScore(-1);
-      setTasteScore(-1);
-      setDeliveryScore(-1);
-      dispatch(
-        postReview({
-          product_id,
-          product_name,
-          product_type,
-          rating,
-          fresh_score,
-          taste_score,
-          delivery_score,
-          contents,
-        })
-      );
-    }
+    dispatch(
+      postReview({
+        product_id,
+        product_name,
+        product_type,
+        rating,
+        fresh_score,
+        taste_score,
+        delivery_score,
+        contents,
+      })
+    );
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
