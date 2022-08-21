@@ -1,38 +1,71 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { reviewScoreSlice } from '../../store/slices/review/reviewScoreSlice';
 import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
 import StarReview from './StarReview';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { postReview } from '../../store/slices/postReview/postReviewThunk';
 
-const AddReview = () => {
+const AddReview = ({ product_type }: { product_type: number }) => {
   const [title, setTitle] = useState('');
-  const [review, setReview] = useState('');
+  const [contents, setContents] = useState('');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const params = useParams();
+  const [fresh_score, setFreshScore] = useState(0);
+  const [taste_score, setTasteScore] = useState(0);
+  const [delivery_score, setDeliveryScore] = useState(0);
 
-  const freshrStar = useAppSelector(
+  const product = useAppSelector((state: RootState) => state.product.product);
+  const product_id = product.id;
+  const product_name = product.title;
+
+  const freshStar = useAppSelector(
     (state: RootState) => state.reviewscore.freshScore
   );
-  const tasteStar = useAppSelector(
+  const taseStar = useAppSelector(
     (state: RootState) => state.reviewscore.tasteScroe
   );
-  const deliverStar = useAppSelector(
+  const deliveryStar = useAppSelector(
     (state: RootState) => state.reviewscore.deliveryScore
   );
-  const totalStar = useAppSelector(
+  const rating = useAppSelector(
     (state: RootState) => state.reviewscore.totalScore
   );
+
+  useEffect(() => {
+    if (product_type === 1) {
+      setFreshScore(freshStar);
+      setTasteScore(taseStar);
+      setDeliveryScore(deliveryStar);
+    } else {
+      setFreshScore(-1);
+      setTasteScore(-1);
+      setDeliveryScore(-1);
+    }
+  }, []);
+
   const onSubmit = async (e: React.SyntheticEvent) => {
     //dispatch title, review, 별점은 전역에 저장해서 가져와야겠네요 아오
     //리뷰페이지로 이동
     //freshStar, tasteStar .. 같이 dispatch
     setTitle('');
-    setReview('');
+    setContents('');
     dispatch(reviewScoreSlice.actions.resetReviewScore());
     navigate(`/detail/${params.id}`);
+    dispatch(
+      postReview({
+        product_id,
+        product_name,
+        product_type,
+        rating,
+        fresh_score,
+        taste_score,
+        delivery_score,
+        contents,
+      })
+    );
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -48,7 +81,7 @@ const AddReview = () => {
     const {
       target: { value },
     } = e;
-    setReview(value);
+    setContents(value);
   };
 
   return (
@@ -65,7 +98,7 @@ const AddReview = () => {
       <ReviewArea>
         <Review>후기작성</Review>
         <ReviewInput
-          value={review}
+          value={contents}
           onChange={handleTextAreaChange}
           placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 되며,&#13;
 일반식품의 효능이나 효과 등에 오해의 소지가 있는 내용을 작성 시 검토 후 비공개 조치될 수 있습니다. &#13;
@@ -78,22 +111,32 @@ const AddReview = () => {
       <StarArea>
         <Star>별점등록</Star>
         <StarReviewContainer>
-          <StarContainer>
-            <StarTitle>신선도</StarTitle>
-            <StarReview category="fresh" />
-          </StarContainer>
-          <StarContainer>
-            <StarTitle>맛</StarTitle>
-            <StarReview category="taste" />
-          </StarContainer>
-          <StarContainer>
-            <StarTitle>배송상태</StarTitle>
-            <StarReview category="deliver" />
-          </StarContainer>
-          <TotalStarContainer>
-            <StarTitle>총점</StarTitle>
-            <StarReview category="total" />
-          </TotalStarContainer>
+          {product_type === 1 ? (
+            <>
+              {' '}
+              <StarContainer>
+                <StarTitle>신선도</StarTitle>
+                <StarReview category="fresh" />
+              </StarContainer>
+              <StarContainer>
+                <StarTitle>맛</StarTitle>
+                <StarReview category="taste" />
+              </StarContainer>
+              <StarContainer>
+                <StarTitle>배송상태</StarTitle>
+                <StarReview category="deliver" />
+              </StarContainer>
+              <TotalStarContainer>
+                <StarTitle>총점</StarTitle>
+                <StarReview category="total" />
+              </TotalStarContainer>
+            </>
+          ) : (
+            <CommonProductStar>
+              <CommonStarTitle>총점</CommonStarTitle>
+              <StarReview category="total" />
+            </CommonProductStar>
+          )}
         </StarReviewContainer>
       </StarArea>
       <Submit onClick={onSubmit}>등록하기 </Submit>
@@ -246,4 +289,20 @@ const TotalStarContainer = styled.div`
   line-height: 40px;
   width: 888px;
   border-top: 1px solid #dddfe1;
+`;
+
+const CommonProductStar = styled.div`
+  display: flex;
+  height: 160px;
+  line-height: 160px;
+`;
+
+const CommonStarTitle = styled.div`
+  width: 110px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 160px;
+  color: #999999;
+  border-right: 1px solid #dddfe1;
 `;
