@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import Summary from '../components/detailPage/summary/Summary';
 import Tabs from '../components/detailPage/Tabs';
 import Header from '../components/header/Header';
+import { getProductThunk } from '../store/slices/product/getProductSlice';
+import { RootState, useAppDispatch, useAppSelector } from '../store/store';
 
-const product = {
+/*const product = {
   id: '1',
   title: '[연세우유 x 마켓컬리] 전용목장우유 900mL',
   price: 2070,
@@ -29,19 +32,34 @@ const product = {
   product_photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg',
   detailed_photo:
     'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg',
-};
+};*/
 
 const DetailPage = () => {
+  const product = useAppSelector((state: RootState) => state.product.product);
+  const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    dispatch(getProductThunk(pathname.split('/').slice(-1)[0]));
+  }, []);
+  useEffect(() => {
+    console.log(product);
+  }, [product]);
+
   return (
     <section>
       <Header />
       <Container>
-        <Summary product={product} />
-        <Tabs
-          product_photo={product.product_photo}
-          detailed_photo={product.detailed_photo}
-          id={product.id}
-        />
+        {product && (
+          <>
+            <Summary product={product} />
+            <Tabs
+              product_photo={product.product_photo}
+              detailed_photo={product.detailed_photo}
+              id={product.id}
+            />
+          </>
+        )}
       </Container>
     </section>
   );

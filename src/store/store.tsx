@@ -8,7 +8,9 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import reviewScoreReducer from './slices/review/reviewScoreSlice';
 import getMainProductReducer from './slices/main/getMainProductSlice';
 import getRecommendedReducer from './slices/main/getRecommendedSlice';
+import gerReviewReducer from './slices/review/getReviewSlice';
 import loginReducer from './slices/login/loginSlice';
+import getProductReducer from './slices/product/getProductSlice';
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +19,9 @@ export const store = configureStore({
     recommend: getRecommendedReducer,
 
     login: loginReducer,
+
+    product: getProductReducer,
+    review: gerReviewReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

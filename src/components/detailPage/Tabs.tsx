@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+import { getReviewThunk } from '../../store/slices/review/getReviewSlice';
+import { RootState, useAppSelector, useAppDispatch } from '../../store/store';
 import Question from './question/Question';
 import Review from './review/Review';
 
@@ -71,6 +74,13 @@ const Tabs = ({
   id: string;
 }) => {
   const [selected, setSelected] = useState(1);
+  const review = useAppSelector((state: RootState) => state.review.review);
+  const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    dispatch(getReviewThunk(pathname.split('/').slice(-1)[0]));
+  }, []);
 
   return (
     <Container>
