@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/header/Header';
 import { login } from '../store/slices/login/loginSlice';
@@ -7,17 +8,36 @@ import { RootState, useAppDispatch, useAppSelector } from '../store/store';
 const LogIn = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const [toast, setToast] = useState(false);
+
+  const [loginState, setLoginState] = useState(false);
+  const isLoginned = useAppSelector((state: RootState) => state.login.success);
+  useEffect(() => {
+    setLoginState(isLoginned);
+  }, [isLoginned]);
+
+  if (loginState === true) {
+    navigate('/');
+  }
+  console.log(isLoginned, loginState);
+
+  const showToast = () => {
+    new Promise((resolve) => {
+      setToast(true);
+      setTimeout(() => {
+        resolve(setToast(false));
+      }, 5000);
+    });
+  };
   const dispatch = useAppDispatch();
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     dispatch(login({ id, password }));
+    showToast();
   };
 
-  const token = useAppSelector((state: RootState) => state.login.data);
-  const success = useAppSelector((state: RootState) => state.login.success);
-
-  console.log(id, password);
-  console.log('👾', token, success);
   const handleIdChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const {
       target: { value },
@@ -35,6 +55,9 @@ const LogIn = () => {
   return (
     <div>
       <Header />
+      {toast && isLoginned === false && (
+        <Toast>아이디, 비밀번호를 다시 입력해주세요! </Toast>
+      )}
       <LogInContainer>
         <LoginTitle>로그인</LoginTitle>
         <LogInInput
@@ -99,4 +122,19 @@ const LoginButton = styled.div`
   font-weight: 500;
   color: #ffffff;
   background-color: #5f0080;
+`;
+
+const Toast = styled.section`
+  width: 300px;
+  text-align: center;
+  position: fixed;
+  bottom: 50px;
+  left: calc(50vw - 160px);
+
+  background: rgba(51, 51, 51, 0.5);
+  color: #ffffff;
+
+  border-radius: 10px;
+
+  padding: 15px 20px;
 `;

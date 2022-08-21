@@ -5,8 +5,6 @@ import { ILogin, ILoginState } from '../../../lib/interface';
 const initialState: ILoginState = {
   pending: false,
   success: false,
-  message: null,
-  errors: null,
   data: '',
 };
 
@@ -32,7 +30,6 @@ const loginSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.pending = false;
         state.success = action.payload.success;
-        state.data = action.payload.data;
       })
       .addCase(login.rejected, (state, action) => {
         state.pending = false;
