@@ -6,7 +6,7 @@ import StarReview from './StarReview';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-const AddReview = () => {
+const AddReview = ({ product_type }: { product_type: number }) => {
   const [title, setTitle] = useState('');
   const [review, setReview] = useState('');
   const dispatch = useAppDispatch();
@@ -33,6 +33,10 @@ const AddReview = () => {
     setReview('');
     dispatch(reviewScoreSlice.actions.resetReviewScore());
     navigate(`/detail/${params.id}`);
+    if (product_type === 1) {
+    }
+    if (product_type === 0) {
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -78,22 +82,32 @@ const AddReview = () => {
       <StarArea>
         <Star>별점등록</Star>
         <StarReviewContainer>
-          <StarContainer>
-            <StarTitle>신선도</StarTitle>
-            <StarReview category="fresh" />
-          </StarContainer>
-          <StarContainer>
-            <StarTitle>맛</StarTitle>
-            <StarReview category="taste" />
-          </StarContainer>
-          <StarContainer>
-            <StarTitle>배송상태</StarTitle>
-            <StarReview category="deliver" />
-          </StarContainer>
-          <TotalStarContainer>
-            <StarTitle>총점</StarTitle>
-            <StarReview category="total" />
-          </TotalStarContainer>
+          {product_type === 1 ? (
+            <>
+              {' '}
+              <StarContainer>
+                <StarTitle>신선도</StarTitle>
+                <StarReview category="fresh" />
+              </StarContainer>
+              <StarContainer>
+                <StarTitle>맛</StarTitle>
+                <StarReview category="taste" />
+              </StarContainer>
+              <StarContainer>
+                <StarTitle>배송상태</StarTitle>
+                <StarReview category="deliver" />
+              </StarContainer>
+              <TotalStarContainer>
+                <StarTitle>총점</StarTitle>
+                <StarReview category="total" />
+              </TotalStarContainer>
+            </>
+          ) : (
+            <CommonProductStar>
+              <CommonStarTitle>총점</CommonStarTitle>
+              <StarReview category="total" />
+            </CommonProductStar>
+          )}
         </StarReviewContainer>
       </StarArea>
       <Submit onClick={onSubmit}>등록하기 </Submit>
@@ -246,4 +260,20 @@ const TotalStarContainer = styled.div`
   line-height: 40px;
   width: 888px;
   border-top: 1px solid #dddfe1;
+`;
+
+const CommonProductStar = styled.div`
+  display: flex;
+  height: 160px;
+  line-height: 160px;
+`;
+
+const CommonStarTitle = styled.div`
+  width: 110px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 160px;
+  color: #999999;
+  border-right: 1px solid #dddfe1;
 `;
