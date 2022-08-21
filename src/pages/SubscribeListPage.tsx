@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../components/header/Header';
 import ReviewList from '../components/subscribeListPage/ReviewList';
+import { getSubscribeListThunk } from '../store/slices/subscribe/getSubscribeListSlice';
+import { RootState, useAppDispatch, useAppSelector } from '../store/store';
 
-const review = [
+/*const review = [
   {
     review_id: '1',
     product_id: '1',
@@ -48,9 +50,18 @@ const review = [
     rating: 4,
     photo: 'https://img-cf.kurly.com/shop/data/goods/1637154205701l0.jpg',
   },
-];
+];*/
 
 const SubscribeListPage = () => {
+  const review = useAppSelector(
+    (state: RootState) => state.subscribeList.subscribeList
+  );
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getSubscribeListThunk());
+  }, []);
+
   return (
     <Container>
       <Header />

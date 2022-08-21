@@ -62,3 +62,8 @@ export interface IProductState {
   pending: boolean;
   product: IProduct;
 }
+
+export interface ISubscribeListState {
+  pending: boolean;
+  subscribeList: IReview[];
+}

@@ -17,18 +17,19 @@ const ReviewList = ({ review }: { review: IReview[] }) => {
           <Column>작성일</Column>
           <Column>도움</Column>
         </ReviewColumns>
-        {review.map((data) => (
-          <section
-            key={data.review_id}
-            onClick={() => setSelected(data.review_id)}
-          >
-            {selected === data.review_id ? (
-              <ReviewDetail review={data} />
-            ) : (
-              <ReviewComponent review={data} />
-            )}
-          </section>
-        ))}
+        {review &&
+          review.map((data) => (
+            <section
+              key={data.review_id}
+              onClick={() => setSelected(data.review_id)}
+            >
+              {selected === data.review_id ? (
+                <ReviewDetail review={data} />
+              ) : (
+                <ReviewComponent review={data} />
+              )}
+            </section>
+          ))}
       </ReviewBox>
     </Container>
   );
