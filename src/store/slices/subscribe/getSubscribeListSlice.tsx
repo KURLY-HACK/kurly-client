@@ -8,7 +8,7 @@ const initialState: ISubscribeListState = {
 };
 
 export const getSubscribeListThunk = createAsyncThunk(
-  'review/getReview',
+  'subscribe/getSubscribeList',
   async (thunkAPI) => {
     const response = await axios.get(`api/kurlyviews/reviews`);
     console.log(response);
@@ -17,7 +17,7 @@ export const getSubscribeListThunk = createAsyncThunk(
 );
 
 export const getSubscribeListSlice = createSlice({
-  name: 'review',
+  name: 'subscribeList',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

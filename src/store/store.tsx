@@ -12,6 +12,7 @@ import gerReviewReducer from './slices/review/getReviewSlice';
 import loginReducer from './slices/login/loginSlice';
 import getProductReducer from './slices/product/getProductSlice';
 import getSubscribeListReducer from './slices/subscribe/getSubscribeListSlice';
+import getSubscribeUserReducer from './slices/subscribe/getSubscribeUserSlice';
 
 export const store = configureStore({
   reducer: {
@@ -25,6 +26,7 @@ export const store = configureStore({
     review: gerReviewReducer,
 
     subscribeList: getSubscribeListReducer,
+    subscribe: getSubscribeUserReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
