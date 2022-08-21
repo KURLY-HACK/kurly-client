@@ -42,9 +42,6 @@ const DetailPage = () => {
   useEffect(() => {
     dispatch(getProductThunk(pathname.split('/').slice(-1)[0]));
   }, []);
-  useEffect(() => {
-    console.log(product);
-  }, [product]);
 
   return (
     <section>
