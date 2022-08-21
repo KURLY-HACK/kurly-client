@@ -100,3 +100,8 @@ export interface IFreshScore {
   taste_score: IScoreState[];
   delivery_score: IScoreState[];
 }
+
+export interface ISubscribeState {
+  pending: boolean;
+  success: boolean;
+}

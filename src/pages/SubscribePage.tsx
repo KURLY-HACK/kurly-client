@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import Header from '../components/header/Header';
 import ReviewList from '../components/subscribeListPage/ReviewList';
 import { getSubscribeUserThunk } from '../store/slices/subscribe/getSubscribeUserSlice';
+import {
+  setSubscribeThunk,
+  setUnsubscribeThunk,
+} from '../store/slices/subscribe/setSubscribeSlice';
 import { RootState, useAppDispatch, useAppSelector } from '../store/store';
 
 const review = [
@@ -57,10 +62,20 @@ const SubscribePage = () => {
   const review = useAppSelector((state: RootState) => state.subscribe.review);
 
   const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(getSubscribeUserThunk());
   }, []);
+
+  const handleSubscribe = async () => {
+    if (selected) {
+      await dispatch(setUnsubscribeThunk(pathname.split('/').slice(-1)[0]));
+    } else {
+      await dispatch(setSubscribeThunk(pathname.split('/').slice(-1)[0]));
+    }
+    setSelected(!selected);
+  };
 
   return (
     <Container>
@@ -78,10 +93,7 @@ const SubscribePage = () => {
               <Name>김*림</Name> 컬리뷰
             </Title>
           </Info>
-          <SubscribeButton
-            onClick={() => setSelected(!selected)}
-            selected={selected}
-          >
+          <SubscribeButton onClick={handleSubscribe} selected={selected}>
             {selected ? '리뷰 구독 해제하기' : '리뷰 구독하기'}
           </SubscribeButton>
         </Profile>

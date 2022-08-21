@@ -15,6 +15,7 @@ import getSubscribeListReducer from './slices/subscribe/getSubscribeListSlice';
 import getSubscribeUserReducer from './slices/subscribe/getSubscribeUserSlice';
 import getCommonScoreReducer from './slices/chart/getCommonScoreSlice';
 import getFreshScoreReducer from './slices/chart/getFreshScoreSlice';
+import setSubscribeReducer from './slices/subscribe/setSubscribeSlice';
 
 export const store = configureStore({
   reducer: {
@@ -32,6 +33,8 @@ export const store = configureStore({
 
     commonscore: getCommonScoreReducer,
     freshscore: getFreshScoreReducer,
+
+    setsubscribe: setSubscribeReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
