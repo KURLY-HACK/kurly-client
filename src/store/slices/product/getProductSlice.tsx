@@ -13,6 +13,7 @@ const initialState: IProductState = {
     details: [],
     product_photo: '',
     detailed_photo: '',
+    product_type: 3,
   },
 };
 
