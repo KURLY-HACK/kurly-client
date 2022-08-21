@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../components/header/Header';
 import ReviewList from '../components/subscribeListPage/ReviewList';
@@ -57,14 +56,11 @@ const SubscribeListPage = () => {
   const review = useAppSelector(
     (state: RootState) => state.subscribeList.subscribeList
   );
-  const { name, success } = useAppSelector((state: RootState) => state.login);
+  const { name } = useAppSelector((state: RootState) => state.login);
 
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   useEffect(() => {
-    if (!success) navigate('/login');
-
     dispatch(getSubscribeListThunk());
   }, []);
 
