@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import Header from '../components/header/Header';
 import ReviewList from '../components/subscribeListPage/ReviewList';
+import { getSubscribeUserThunk } from '../store/slices/subscribe/getSubscribeUserSlice';
+import { RootState, useAppDispatch, useAppSelector } from '../store/store';
 
 const review = [
   {
@@ -52,6 +54,12 @@ const review = [
 
 const SubscribePage = () => {
   const [selected, setSelected] = useState(false);
+  const review = useAppSelector((state: RootState) => state.subscribe.review);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getSubscribeUserThunk());
+  }, []);
 
   return (
     <Container>

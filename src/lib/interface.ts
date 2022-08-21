@@ -52,3 +52,18 @@ export interface ILoginState {
   errors: null;
   data: string;
 }
+
+export interface IReviewState {
+  pending: boolean;
+  review: IReview[];
+}
+
+export interface IProductState {
+  pending: boolean;
+  product: IProduct;
+}
+
+export interface ISubscribeListState {
+  pending: boolean;
+  subscribeList: IReview[];
+}

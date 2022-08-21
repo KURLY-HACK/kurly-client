@@ -131,6 +131,11 @@ const TitleInput = styled.input`
   margin-top: 8px;
   margin-left: 10px;
   border: 1px solid #dddfe1;
+
+  :focus {
+    outline: none;
+    border: 1px solid #333333;
+  }
 `;
 const ReviewArea = styled.div`
   height: 261px;
@@ -159,6 +164,11 @@ const ReviewInput = styled.textarea`
   height: 232px;
   border: 1px solid #dddfe1;
   resize: none;
+
+  :focus {
+    outline: none;
+    border: 1px solid #333333;
+  }
 `;
 const ImgArea = styled.div`
   width: 1007px;
