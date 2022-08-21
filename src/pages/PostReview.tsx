@@ -3,16 +3,19 @@ import styled from 'styled-components';
 import Header from '../components/header/Header';
 import AddReview from '../components/postReview/AddReview';
 import ProductInfo from '../components/postReview/ProductInfo';
+import { RootState, useAppSelector } from '../store/store';
 
 const PostReview = () => {
+  const product = useAppSelector((state: RootState) => state.product.product);
+
   return (
     <Wrapper>
       <Header />
       <ReviewContainer>
         <PageTitle>후기작성</PageTitle>
         <ProductInfo
-          image={'/images/testProduct.png'}
-          productName={'[언더프레셔] 골든에라 블렌드 원두  '}
+          image={product.product_photo}
+          productName={product.title}
         />
         <AddReview />
       </ReviewContainer>
