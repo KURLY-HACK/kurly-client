@@ -79,7 +79,7 @@ const Tabs = ({
   const { pathname } = useLocation();
 
   useEffect(() => {
-    dispatch(getReviewThunk(pathname.split('/').slice(-1)[0]));
+    dispatch(getReviewThunk(id));
   }, []);
 
   return (

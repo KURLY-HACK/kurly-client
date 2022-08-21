@@ -56,7 +56,7 @@ const DetailPage = () => {
             <Tabs
               product_photo={product.product_photo}
               detailed_photo={product.detailed_photo}
-              id={product.id}
+              id={pathname.split('/').slice(-1)[0]}
             />
           </>
         )}
