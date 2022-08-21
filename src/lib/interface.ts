@@ -48,8 +48,6 @@ export interface ILogin {
 export interface ILoginState {
   pending: boolean;
   success: boolean;
-  message: null;
-  errors: null;
   data: string;
 }
 

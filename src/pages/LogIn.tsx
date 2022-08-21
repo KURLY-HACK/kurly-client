@@ -7,6 +7,17 @@ import { RootState, useAppDispatch, useAppSelector } from '../store/store';
 const LogIn = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
+  const [toast, setToast] = useState(false);
+  const isLoginned = useAppSelector((state: RootState) => state.login.success);
+
+  const showToast = () => {
+    new Promise((resolve) => {
+      setToast(true);
+      setTimeout(() => {
+        resolve(setToast(false));
+      }, 5000);
+    });
+  };
   const dispatch = useAppDispatch();
 
   const onSubmit = async (e: React.SyntheticEvent) => {
@@ -99,4 +110,19 @@ const LoginButton = styled.div`
   font-weight: 500;
   color: #ffffff;
   background-color: #5f0080;
+`;
+
+const Toast = styled.section`
+  width: 150px;
+
+  position: fixed;
+  bottom: 50px;
+  left: calc(50vw - 75px);
+
+  background: rgba(51, 51, 51, 0.5);
+  color: #ffffff;
+
+  border-radius: 10px;
+
+  padding: 15px 20px;
 `;
