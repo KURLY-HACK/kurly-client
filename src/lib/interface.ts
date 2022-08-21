@@ -49,6 +49,7 @@ export interface ILoginState {
   pending: boolean;
   success: boolean;
   data: string;
+  name: string;
 }
 
 export interface IReviewState {

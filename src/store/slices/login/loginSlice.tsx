@@ -6,6 +6,7 @@ const initialState: ILoginState = {
   pending: false,
   success: false,
   data: '',
+  name: '',
 };
 
 export const login = createAsyncThunk(
@@ -30,6 +31,7 @@ const loginSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.pending = false;
         state.success = action.payload.success;
+        state.name = action.payload.name;
       })
       .addCase(login.rejected, (state, action) => {
         state.pending = false;
