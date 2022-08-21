@@ -5,24 +5,32 @@ import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
 import StarReview from './StarReview';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { postReview } from '../../store/slices/postReview/postReviewThunk';
 
 const AddReview = ({ product_type }: { product_type: number }) => {
   const [title, setTitle] = useState('');
-  const [review, setReview] = useState('');
+  const [contents, setContents] = useState('');
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const params = useParams();
+  const [fresh_score, setFreshScore] = useState(-1);
+  const [taste_score, setTasteScore] = useState(-1);
+  const [delivery_score, setDeliveryScore] = useState(-1);
 
-  const freshrStar = useAppSelector(
+  const product = useAppSelector((state: RootState) => state.product.product);
+  const product_id = product.id;
+  const product_name = product.title;
+
+  const freshStar = useAppSelector(
     (state: RootState) => state.reviewscore.freshScore
   );
-  const tasteStar = useAppSelector(
+  const taseStar = useAppSelector(
     (state: RootState) => state.reviewscore.tasteScroe
   );
-  const deliverStar = useAppSelector(
+  const deliveryStar = useAppSelector(
     (state: RootState) => state.reviewscore.deliveryScore
   );
-  const totalStar = useAppSelector(
+  const rating = useAppSelector(
     (state: RootState) => state.reviewscore.totalScore
   );
   const onSubmit = async (e: React.SyntheticEvent) => {
@@ -30,12 +38,41 @@ const AddReview = ({ product_type }: { product_type: number }) => {
     //리뷰페이지로 이동
     //freshStar, tasteStar .. 같이 dispatch
     setTitle('');
-    setReview('');
+    setContents('');
     dispatch(reviewScoreSlice.actions.resetReviewScore());
     navigate(`/detail/${params.id}`);
     if (product_type === 1) {
-    }
-    if (product_type === 0) {
+      setFreshScore(freshStar);
+      setTasteScore(taseStar);
+      setDeliveryScore(deliveryStar);
+      dispatch(
+        postReview({
+          product_id,
+          product_name,
+          product_type,
+          rating,
+          fresh_score,
+          taste_score,
+          delivery_score,
+          contents,
+        })
+      );
+    } else {
+      setFreshScore(-1);
+      setTasteScore(-1);
+      setDeliveryScore(-1);
+      dispatch(
+        postReview({
+          product_id,
+          product_name,
+          product_type,
+          rating,
+          fresh_score,
+          taste_score,
+          delivery_score,
+          contents,
+        })
+      );
     }
   };
 
@@ -52,7 +89,7 @@ const AddReview = ({ product_type }: { product_type: number }) => {
     const {
       target: { value },
     } = e;
-    setReview(value);
+    setContents(value);
   };
 
   return (
@@ -69,7 +106,7 @@ const AddReview = ({ product_type }: { product_type: number }) => {
       <ReviewArea>
         <Review>후기작성</Review>
         <ReviewInput
-          value={review}
+          value={contents}
           onChange={handleTextAreaChange}
           placeholder="자세한 후기는 다른 고객의 구매에 많은 도움이 되며,&#13;
 일반식품의 효능이나 효과 등에 오해의 소지가 있는 내용을 작성 시 검토 후 비공개 조치될 수 있습니다. &#13;

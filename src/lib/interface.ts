@@ -67,3 +67,14 @@ export interface ISubscribeListState {
   pending: boolean;
   subscribeList: IReview[];
 }
+
+export interface IPostReviewState {
+  product_id: string;
+  product_name: string;
+  product_type: number;
+  rating: number;
+  fresh_score: number;
+  taste_score: number;
+  delivery_score: number;
+  contents: string;
+}
