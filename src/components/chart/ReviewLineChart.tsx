@@ -5,9 +5,11 @@ import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
 
 const ReviewLineChart = ({ id }: { id: string }) => {
   //dispatch할 때 id값 쿼리에 필요
+  const [totalScores, setTotalScores] = useEffect(0);
   const totalScores = useAppSelector(
     (state: RootState) => state.commonscore.rating
   );
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(getCommonScoreThunk(id));
