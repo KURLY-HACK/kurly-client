@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ApexCharts from 'react-apexcharts';
+import { getCommonScoreThunk } from '../../store/slices/chart/getCommonScoreSlice';
+import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
 
 const ReviewLineChart = ({ id }: { id: string }) => {
   //dispatch할 때 id값 쿼리에 필요
-  const totalScores = [
-    { date: '2022-05-01', rate: 4.3 },
-    { date: '2022-06-01', rate: 4.0 },
-    { date: '2022-07-01', rate: 3.7 },
-    { date: '2022-08-01', rate: 4.0 },
-  ];
+  const totalScores = useAppSelector(
+    (state: RootState) => state.commonscore.rating
+  );
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(getCommonScoreThunk(id));
+  }, []);
+  // const totalScores = [
+  //   { date: '2022-05-01', rate: 4.3 },
+  //   { date: '2022-06-01', rate: 4.0 },
+  //   { date: '2022-07-01', rate: 3.7 },
+  //   { date: '2022-08-01', rate: 4.0 },
+  // ];
   return (
     <ApexCharts
       type="line"

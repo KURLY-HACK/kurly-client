@@ -9,10 +9,8 @@ const initialState: ICommonScore = {
 
 export const getCommonScoreThunk = createAsyncThunk(
   'commonscore/getCommonScore',
-  async (productId: string, thunkAPI) => {
-    const response = await axios.get(
-      `api/products/${productId}/review/montly-rate`
-    );
+  async (id: string, thunkAPI) => {
+    const response = await axios.get(`api/products/${id}/review/montly-rate`);
     return response.data;
   }
 );
