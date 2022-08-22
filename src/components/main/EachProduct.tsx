@@ -18,7 +18,9 @@ const EachProduct: FC<Props> = ({ id, image, name, price }) => {
         <img src={image} width={249} height={320} />
       </ProductImage>
       <ProductName>{name}</ProductName>
-      <ProductcPrice>{price}원</ProductcPrice>
+      <ProductcPrice>
+        {price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+      </ProductcPrice>
     </Wrapper>
   );
 };

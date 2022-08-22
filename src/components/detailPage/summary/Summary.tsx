@@ -42,7 +42,7 @@ const Summary = ({
           ))}
         </InfoListBox>
         <CountProduct count={count} setCount={setCount} />
-        <ProductPrice count={count} price={2070} />
+        <ProductPrice count={count} price={price} />
         <Description>로그인 후, 적립 혜택 제공</Description>
         <Buttons />
       </Information>

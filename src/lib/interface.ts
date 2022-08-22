@@ -1,18 +1,18 @@
 export interface IReview {
-  review_id: string;
+  id: string;
 
-  member_id: string;
-  member_name: string;
+  memberId: string;
+  memberName: string;
   date: string;
 
-  product_id: string;
-  product_name: string;
+  productId: string;
+  productName: string;
 
-  product_type: number;
+  productType: number;
   rating: number;
-  fresh_score?: number;
-  taste_score?: number;
-  delivery_score?: number;
+  freshScore?: number;
+  tasteScore?: number;
+  deliveryScore?: number;
   contents: string;
   photo: string;
 }
@@ -68,6 +68,10 @@ export interface ISubscribeListState {
   subscribeList: IReview[];
 }
 
+export interface ISubscribeUserState extends IReviewState {
+  name: string;
+}
+
 export interface IPostReviewState {
   product_name: string;
   product_type: number;
@@ -99,4 +103,9 @@ export interface IFreshScore {
   fresh_score: IScoreState[];
   taste_score: IScoreState[];
   delivery_score: IScoreState[];
+}
+
+export interface ISubscribeState {
+  pending: boolean;
+  subscribe: boolean;
 }

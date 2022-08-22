@@ -21,7 +21,7 @@ const CountProduct = ({
         />
         <CountText>{count}</CountText>
         <Button
-          alt="minus"
+          alt="plus"
           src="/images/detailPage/plus.svg"
           onClick={() => setCount(count + 1)}
         />

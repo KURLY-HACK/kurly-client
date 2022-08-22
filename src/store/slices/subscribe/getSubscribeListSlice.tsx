@@ -10,7 +10,8 @@ const initialState: ISubscribeListState = {
 export const getSubscribeListThunk = createAsyncThunk(
   'subscribe/getSubscribeList',
   async (thunkAPI) => {
-    const response = await axios.get(`api/kurlyviews/reviews`);
+    const response = await axios.get(`api/kurlyviews`);
+    console.log(response);
     return response.data;
   }
 );
