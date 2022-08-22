@@ -14,7 +14,7 @@ export const login = createAsyncThunk(
   async (loginInfo: ILogin) => {
     const response = await axios.post('api/auth/login', loginInfo);
     const access_token = response.data.accessToken;
-    axios.defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
+    axios.defaults.headers.common['Authorization'] = `${access_token}`;
     return response.data;
   }
 );
