@@ -69,7 +69,6 @@ export interface ISubscribeListState {
 }
 
 export interface IPostReviewState {
-  product_id: string;
   product_name: string;
   product_type: number;
   rating: number;
@@ -77,4 +76,9 @@ export interface IPostReviewState {
   taste_score: number;
   delivery_score: number;
   contents: string;
+}
+
+export interface IPostReviewProps {
+  product_id: string;
+  reviewData: IPostReviewState;
 }
