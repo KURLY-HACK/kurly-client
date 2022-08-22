@@ -17,7 +17,7 @@ const PostReview = () => {
           image={product.product_photo}
           productName={product.title}
         />
-        <AddReview product_type={product.product_type} />
+        <AddReview product_type={product.type} />
       </ReviewContainer>
     </Wrapper>
   );

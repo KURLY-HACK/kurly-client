@@ -26,7 +26,7 @@ export interface IProduct {
   details: { title: string; content: string }[];
   product_photo: string;
   detailed_photo: string;
-  product_type: number;
+  type: number;
 }
 
 export interface IMainProduct {
