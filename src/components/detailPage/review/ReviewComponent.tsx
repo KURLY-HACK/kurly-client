@@ -11,7 +11,7 @@ const ReviewComponent = ({
     memberId,
     memberName,
     date,
-    contents,
+    content,
     photo,
   },
   idx,
@@ -30,7 +30,7 @@ const ReviewComponent = ({
           <Title onClick={() => navigate(`/detail/${productId}`)}>
             {productName}
           </Title>
-          <Description>{contents}</Description>
+          <Description>{content}</Description>
         </Contents>
       </ContentWrapper>
       <Text onClick={() => navigate(`/subscribe/${memberId}`)}>
