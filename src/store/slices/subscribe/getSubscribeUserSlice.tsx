@@ -9,8 +9,8 @@ const initialState: IReviewState = {
 
 export const getSubscribeUserThunk = createAsyncThunk(
   'subscribe/getSubscribeUser',
-  async (thunkAPI) => {
-    const response = await axios.get(`api/kurlyviews/reviews`);
+  async (id: string, thunkAPI) => {
+    const response = await axios.get(`api/users/${id}/reviews`);
     return response.data;
   }
 );
@@ -26,7 +26,7 @@ export const getSubscribeUserSlice = createSlice({
       })
       .addCase(getSubscribeUserThunk.fulfilled, (state, action) => {
         state.pending = false;
-        state.review = action.payload.review;
+        state.review = action.payload.reviews;
       })
       .addCase(getSubscribeUserThunk.rejected, (state, action) => {
         state.pending = false;

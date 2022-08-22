@@ -5,6 +5,7 @@ import Header from '../components/header/Header';
 import ReviewList from '../components/subscribeListPage/ReviewList';
 import { getSubscribeUserThunk } from '../store/slices/subscribe/getSubscribeUserSlice';
 import {
+  setSubscribeStatusThunk,
   setSubscribeThunk,
   setUnsubscribeThunk,
 } from '../store/slices/subscribe/setSubscribeSlice';
@@ -58,23 +59,23 @@ const review = [
 ];
 
 const SubscribePage = () => {
-  const [selected, setSelected] = useState(false);
+  const selected = useAppSelector(
+    (state: RootState) => state.setsubscribe.subscribe
+  );
   const review = useAppSelector((state: RootState) => state.subscribe.review);
 
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
+  const id = pathname.split('/').slice(-1)[0];
 
   useEffect(() => {
-    dispatch(getSubscribeUserThunk());
+    dispatch(getSubscribeUserThunk(id));
+    dispatch(setSubscribeStatusThunk(id));
   }, []);
 
-  const handleSubscribe = async () => {
-    if (selected) {
-      await dispatch(setUnsubscribeThunk(pathname.split('/').slice(-1)[0]));
-    } else {
-      await dispatch(setSubscribeThunk(pathname.split('/').slice(-1)[0]));
-    }
-    setSelected(!selected);
+  const handleSubscribe = () => {
+    if (selected) dispatch(setUnsubscribeThunk(id));
+    else dispatch(setSubscribeThunk(id));
   };
 
   return (
@@ -90,7 +91,11 @@ const SubscribePage = () => {
               height={220}
             />
             <Title>
-              <Name>김*림</Name> 컬리뷰
+              <Name>
+                {review[0].member_name.slice(0, 1)}*
+                {review[0].member_name.slice(2)}
+              </Name>{' '}
+              컬리뷰
             </Title>
           </Info>
           <SubscribeButton onClick={handleSubscribe} selected={selected}>

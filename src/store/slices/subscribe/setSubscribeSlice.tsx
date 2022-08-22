@@ -4,8 +4,16 @@ import { ISubscribeState } from '../../../lib/interface';
 
 const initialState: ISubscribeState = {
   pending: false,
-  success: false,
+  subscribe: false,
 };
+
+export const setSubscribeStatusThunk = createAsyncThunk(
+  'subscribe/subscribeStatus',
+  async (id: string, thunkAPI) => {
+    const response = await axios.get(`api/kurlyviews/${id}/status`);
+    return response.data;
+  }
+);
 
 export const setSubscribeThunk = createAsyncThunk(
   'subscribe/setSubscribe',
@@ -29,27 +37,38 @@ export const getSubscribeSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(setSubscribeStatusThunk.pending, (state) => {
+        state.pending = true;
+      })
+      .addCase(setSubscribeStatusThunk.fulfilled, (state, action) => {
+        state.pending = false;
+        state.subscribe = action.payload.result;
+      })
+      .addCase(setSubscribeStatusThunk.rejected, (state, action) => {
+        state.pending = false;
+        state.subscribe = false;
+      })
       .addCase(setSubscribeThunk.pending, (state) => {
         state.pending = true;
       })
-      .addCase(setSubscribeThunk.fulfilled, (state, action) => {
+      .addCase(setSubscribeThunk.fulfilled, (state) => {
         state.pending = false;
-        state.success = action.payload.success;
+        state.subscribe = true;
       })
       .addCase(setSubscribeThunk.rejected, (state, action) => {
         state.pending = false;
-        state.success = false;
+        state.subscribe = false;
       })
       .addCase(setUnsubscribeThunk.pending, (state) => {
         state.pending = true;
       })
-      .addCase(setUnsubscribeThunk.fulfilled, (state, action) => {
+      .addCase(setUnsubscribeThunk.fulfilled, (state) => {
         state.pending = false;
-        state.success = action.payload.success;
+        state.subscribe = false;
       })
       .addCase(setUnsubscribeThunk.rejected, (state, action) => {
         state.pending = false;
-        state.success = false;
+        state.subscribe = false;
       });
   },
 });

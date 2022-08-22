@@ -103,5 +103,5 @@ export interface IFreshScore {
 
 export interface ISubscribeState {
   pending: boolean;
-  success: boolean;
+  subscribe: boolean;
 }

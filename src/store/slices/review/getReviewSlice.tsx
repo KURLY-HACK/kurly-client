@@ -10,7 +10,7 @@ const initialState: IReviewState = {
 export const getReviewThunk = createAsyncThunk(
   'review/getReview',
   async (id: string, thunkAPI) => {
-    const response = await axios.get(`api/products/${id}/review`);
+    const response = await axios.get(`api/products/${id}/reviews`);
     return response.data;
   }
 );
