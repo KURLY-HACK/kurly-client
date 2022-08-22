@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { IReviewState, ISubscribeUserState } from '../../../lib/interface';
+import { ISubscribeUserState } from '../../../lib/interface';
 
 const initialState: ISubscribeUserState = {
   pending: false,
