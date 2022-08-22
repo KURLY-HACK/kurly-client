@@ -8,7 +8,7 @@ const ReviewDetail = ({
   review: {
     productId,
     productName,
-    contents,
+    content,
     rating,
     freshScore,
     tasteScore,
@@ -42,7 +42,7 @@ const ReviewDetail = ({
         <Title onClick={() => navigate(`/detail/${productId}`)}>
           {productName}
         </Title>
-        <Description>{contents}</Description>
+        <Description>{content}</Description>
       </Contents>
       <ButtonBox>
         <HelpButton>도움이 돼요 1</HelpButton>

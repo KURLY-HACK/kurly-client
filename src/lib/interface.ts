@@ -13,7 +13,7 @@ export interface IReview {
   freshScore?: number;
   tasteScore?: number;
   deliveryScore?: number;
-  contents: string;
+  content: string;
   photo: string;
 }
 
