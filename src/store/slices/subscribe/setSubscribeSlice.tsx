@@ -18,7 +18,7 @@ export const setSubscribeStatusThunk = createAsyncThunk(
 export const setSubscribeThunk = createAsyncThunk(
   'subscribe/setSubscribe',
   async (id: string, thunkAPI) => {
-    const response = await axios.post(`api/kurlyviews`, { id: id });
+    const response = await axios.get(`api/kurlyviews/${id}`);
     return response.data;
   }
 );
@@ -26,12 +26,12 @@ export const setSubscribeThunk = createAsyncThunk(
 export const setUnsubscribeThunk = createAsyncThunk(
   'subscribe/setUnsubscribe',
   async (id: string, thunkAPI) => {
-    const response = await axios.post(`api/kurlyviews/unsubscribe`, { id: id });
+    const response = await axios.delete(`api/kurlyviews/${id}`);
     return response.data;
   }
 );
 
-export const getSubscribeSlice = createSlice({
+export const setSubscribeSlice = createSlice({
   name: 'subscribe',
   initialState,
   reducers: {},
@@ -73,4 +73,4 @@ export const getSubscribeSlice = createSlice({
   },
 });
 
-export default getSubscribeSlice.reducer;
+export default setSubscribeSlice.reducer;

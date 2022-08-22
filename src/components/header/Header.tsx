@@ -1,9 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
+import { logout } from '../../store/slices/login/loginSlice';
 
 const Header = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const isLogin = useAppSelector((state: RootState) => state.login.success);
+
   return (
     <Wrapper>
       <HeaderContainer>
@@ -14,7 +20,11 @@ const Header = () => {
         <Menu>베스트</Menu>
         <Menu>알뜰쇼핑</Menu>
         <Menu onClick={() => navigate('/subscribe-list')}>구독 리스트</Menu>
-        <LoginButton onClick={() => navigate('/login')}>로그인</LoginButton>
+        {isLogin ? (
+          <LoginButton onClick={() => dispatch(logout())}>로그아웃</LoginButton>
+        ) : (
+          <LoginButton onClick={() => navigate('/login')}>로그인</LoginButton>
+        )}
       </HeaderContainer>
     </Wrapper>
   );

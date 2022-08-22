@@ -22,7 +22,13 @@ export const login = createAsyncThunk(
 const loginSlice = createSlice({
   name: 'login',
   initialState,
-  reducers: {},
+  reducers: {
+    logout: (state) => {
+      delete axios.defaults.headers.common['Authorization'];
+      state.success = false;
+      state.name = '';
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
@@ -38,5 +44,7 @@ const loginSlice = createSlice({
       });
   },
 });
+
+export const { logout } = loginSlice.actions;
 
 export default loginSlice.reducer;
