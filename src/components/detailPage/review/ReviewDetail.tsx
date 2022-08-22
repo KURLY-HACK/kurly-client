@@ -6,15 +6,15 @@ import Rating from './Rating';
 
 const ReviewDetail = ({
   review: {
-    product_id,
-    product_name,
+    productId,
+    productName,
     contents,
     rating,
-    fresh_score,
-    taste_score,
-    delivery_score,
-    member_id,
-    member_name,
+    freshScore,
+    tasteScore,
+    deliveryScore,
+    memberId,
+    memberName,
     photo,
   },
 }: {
@@ -32,15 +32,15 @@ const ReviewDetail = ({
       <Contents>
         <Rating
           rate={
-            fresh_score && taste_score && delivery_score
-              ? [rating, taste_score, fresh_score, delivery_score]
+            freshScore && tasteScore && deliveryScore
+              ? [rating, tasteScore, freshScore, deliveryScore]
               : [rating]
           }
-          name={member_name}
-          id={member_id}
+          name={memberName}
+          id={memberId}
         />
-        <Title onClick={() => navigate(`/detail/${product_id}`)}>
-          {product_name}
+        <Title onClick={() => navigate(`/detail/${productId}`)}>
+          {productName}
         </Title>
         <Description>{contents}</Description>
       </Contents>

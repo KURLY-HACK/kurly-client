@@ -18,15 +18,12 @@ const ReviewList = ({ review }: { review: IReview[] }) => {
           <Column>도움</Column>
         </ReviewColumns>
         {review &&
-          review.map((data) => (
-            <section
-              key={data.review_id}
-              onClick={() => setSelected(data.review_id)}
-            >
-              {selected === data.review_id ? (
+          review.map((data, idx) => (
+            <section key={data.id} onClick={() => setSelected(data.id)}>
+              {selected === data.id ? (
                 <ReviewDetail review={data} />
               ) : (
-                <ReviewComponent review={data} />
+                <ReviewComponent review={data} idx={idx} />
               )}
             </section>
           ))}

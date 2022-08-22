@@ -5,34 +5,36 @@ import { IReview } from '../../../lib/interface';
 
 const ReviewComponent = ({
   review: {
-    review_id,
-    product_id,
-    product_name,
-    member_id,
-    member_name,
+    id,
+    productId,
+    productName,
+    memberId,
+    memberName,
     date,
     contents,
     photo,
   },
+  idx,
 }: {
   review: IReview;
+  idx: number;
 }) => {
   const navigate = useNavigate();
 
   return (
     <Container>
-      <Text>{review_id}</Text>
+      <Text>{idx + 1}</Text>
       <ContentWrapper>
         {photo && <img alt="preview" src={photo} width={150} height={150} />}
         <Contents image={photo}>
-          <Title onClick={() => navigate(`/detail/${product_id}`)}>
-            {product_name}
+          <Title onClick={() => navigate(`/detail/${productId}`)}>
+            {productName}
           </Title>
           <Description>{contents}</Description>
         </Contents>
       </ContentWrapper>
-      <Text onClick={() => navigate(`/subscribe/${member_id}`)}>
-        {member_name.slice(0, 1)}*{member_name.slice(2)}
+      <Text onClick={() => navigate(`/subscribe/${memberId}`)}>
+        {memberName.slice(0, 1)}*{memberName.slice(2)}
       </Text>
       <Text>{date.slice(0, 10)}</Text>
       <Text>1</Text>
