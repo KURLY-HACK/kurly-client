@@ -39,7 +39,11 @@ const AddReview = ({ product_type }: { product_type: number }) => {
       setFreshScore(freshStar);
       setTasteScore(taseStar);
       setDeliveryScore(deliveryStar);
-    } else {
+    }
+  }, [freshStar, taseStar, deliveryStar]);
+
+  useEffect(() => {
+    if (product_type !== 1) {
       setFreshScore(-1);
       setTasteScore(-1);
       setDeliveryScore(-1);
@@ -47,23 +51,23 @@ const AddReview = ({ product_type }: { product_type: number }) => {
   }, []);
 
   const onSubmit = async (e: React.SyntheticEvent) => {
-    //dispatch title, review, 별점은 전역에 저장해서 가져와야겠네요 아오
-    //리뷰페이지로 이동
-    //freshStar, tasteStar .. 같이 dispatch
     setTitle('');
     setContents('');
     dispatch(reviewScoreSlice.actions.resetReviewScore());
     navigate(`/detail/${params.id}`);
+
     dispatch(
       postReview({
         product_id,
-        product_name,
-        product_type,
-        rating,
-        fresh_score,
-        taste_score,
-        delivery_score,
-        contents,
+        reviewData: {
+          product_name,
+          product_type,
+          rating,
+          fresh_score,
+          taste_score,
+          delivery_score,
+          contents,
+        },
       })
     );
   };

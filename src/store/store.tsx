@@ -13,6 +13,8 @@ import loginReducer from './slices/login/loginSlice';
 import getProductReducer from './slices/product/getProductSlice';
 import getSubscribeListReducer from './slices/subscribe/getSubscribeListSlice';
 import getSubscribeUserReducer from './slices/subscribe/getSubscribeUserSlice';
+import getCommonScoreReducer from './slices/chart/getCommonScoreSlice';
+import getFreshScoreReducer from './slices/chart/getFreshScoreSlice';
 
 export const store = configureStore({
   reducer: {
@@ -27,6 +29,9 @@ export const store = configureStore({
 
     subscribeList: getSubscribeListReducer,
     subscribe: getSubscribeUserReducer,
+
+    commonscore: getCommonScoreReducer,
+    freshscore: getFreshScoreReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

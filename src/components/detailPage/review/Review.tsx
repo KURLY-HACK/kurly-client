@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IReview } from '../../../lib/interface';
+import { RootState, useAppSelector } from '../../../store/store';
 import FreshLineChart from '../../chart/FreshLineChart';
 import ReviewLineChart from '../../chart/ReviewLineChart';
 import ReviewList from '../../subscribeListPage/ReviewList';
@@ -9,6 +10,9 @@ import ReviewList from '../../subscribeListPage/ReviewList';
 const Review = ({ review, id }: { review: IReview[]; id: string }) => {
   const navigate = useNavigate();
   const [isFreshFood, setIsFreshFood] = useState(false);
+
+  const product = useAppSelector((state: RootState) => state.product.product);
+  const productType = product.type;
 
   return (
     <Container>
@@ -22,7 +26,13 @@ const Review = ({ review, id }: { review: IReview[]; id: string }) => {
             월별 총 별점
           </ChangeGraphButton>
           <GraphContainer>
-            <FreshLineChart id={id} />
+            {productType === 1 ? (
+              <FreshLineChart id={id} />
+            ) : (
+              <DescriptionText>
+                신선 식품이 아니므로 주간 상세 별점이 제공되지 않습니다.{' '}
+              </DescriptionText>
+            )}
           </GraphContainer>
         </>
       ) : (
@@ -128,4 +138,16 @@ const ChangeGraphButton = styled.div`
     border: 1px solid #5f0080;
     color: #5f0080;
   }
+`;
+
+const DescriptionText = styled.div`
+  width: 1007px;
+  padding-left: 70px;
+  text-align: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 500;
+  color: #333333;
+  height: 200px;
+  line-height: 200px;
 `;

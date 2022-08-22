@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { IPostReviewState } from '../../../lib/interface';
+import { IPostReviewProps, IPostReviewState } from '../../../lib/interface';
 
 export const postReview = createAsyncThunk(
   'postreview/postreview',
-  async (reviewData: IPostReviewState, thunkAPI) => {
+  async (reviewData: IPostReviewProps, thunkAPI) => {
     const response = await axios.post(
       `api/products/${reviewData.product_id}/reviews`,
-      reviewData
+      reviewData.reviewData
     );
     return response.data;
   }
