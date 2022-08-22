@@ -82,3 +82,21 @@ export interface IPostReviewProps {
   product_id: string;
   reviewData: IPostReviewState;
 }
+
+export interface IScoreState {
+  date: string;
+  rate: number;
+}
+
+export interface ICommonScore {
+  pending: boolean;
+  rating: IScoreState[];
+}
+
+export interface IFreshScore {
+  pending: boolean;
+  rating: IScoreState[];
+  fresh_score: IScoreState[];
+  taste_score: IScoreState[];
+  delivery_score: IScoreState[];
+}
