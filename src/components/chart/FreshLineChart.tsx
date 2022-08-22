@@ -74,7 +74,7 @@ const FreshLineChart = ({ id }: { id: string }) => {
           align: 'left',
           style: {
             fontSize: '20px',
-            fontWeight: 500,
+            fontWeight: 700,
           },
         },
 
