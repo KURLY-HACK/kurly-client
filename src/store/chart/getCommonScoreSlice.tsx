@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { ICommonScore } from '../../../lib/interface';
+import { ICommonScore } from '../../lib/interface';
 
 const initialState: ICommonScore = {
   pending: false,
