@@ -13,10 +13,7 @@ const PostReview = () => {
       <Header />
       <ReviewContainer>
         <PageTitle>후기작성</PageTitle>
-        <ProductInfo
-          image={product.product_photo}
-          productName={product.title}
-        />
+        <ProductInfo image={product.photo} productName={product.title} />
         <AddReview product_type={product.type} />
       </ReviewContainer>
     </Wrapper>
