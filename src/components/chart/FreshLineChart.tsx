@@ -21,25 +21,6 @@ const FreshLineChart = ({ id }: { id: string }) => {
     dispatch(getFreshScoreThunk(id));
   }, []);
 
-  // const freshScores = [
-  //   { date: '4주 전', rate: 4.3 },
-  //   { date: '3주 전', rate: 4.0 },
-  //   { date: '2주 전', rate: 3.7 },
-  //   { date: '1주 전', rate: 4.0 },
-  // ];
-  // const tasteScores = [
-  //   { date: '4주 전', rate: 1 },
-  //   { date: '3주 전', rate: 2 },
-  //   { date: '2주 전', rate: 3 },
-  //   { date: '1주 전', rate: 4 },
-  // ];
-  // const deliveryScores = [
-  //   { date: '4주 전', rate: 4 },
-  //   { date: '3주 전', rate: 3 },
-  //   { date: '2주 전', rate: 2 },
-  //   { date: '1주 전', rate: 1 },
-  // ];
-
   return (
     <ApexCharts
       type="line"
