@@ -13,8 +13,8 @@ import loginReducer from './slices/login/loginSlice';
 import getProductReducer from './slices/product/getProductSlice';
 import getSubscribeListReducer from './slices/subscribe/getSubscribeListSlice';
 import getSubscribeUserReducer from './slices/subscribe/getSubscribeUserSlice';
-import getCommonScoreReducer from './chart/getCommonScoreSlice';
-import getFreshScoreReducer from './chart/getFreshScoreSlice';
+import getCommonScoreReducer from './slices/chart/getCommonScoreSlice';
+import getFreshScoreReducer from './slices/chart/getFreshScoreSlice';
 import setSubscribeReducer from './slices/subscribe/setSubscribeSlice';
 
 export const store = configureStore({
