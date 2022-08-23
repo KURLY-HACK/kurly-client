@@ -12,7 +12,6 @@ export const getSubscribeUserThunk = createAsyncThunk(
   'subscribe/getSubscribeUser',
   async (id: string, thunkAPI) => {
     const response = await axios.get(`api/users/${id}/reviews`);
-    console.log(response);
     return response.data;
   }
 );

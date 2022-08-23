@@ -15,7 +15,9 @@ const SubscribePage = () => {
   const selected = useAppSelector(
     (state: RootState) => state.setsubscribe.subscribe
   );
-  const review = useAppSelector((state: RootState) => state.subscribe.review);
+  const { review, name } = useAppSelector(
+    (state: RootState) => state.subscribe
+  );
 
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
@@ -45,7 +47,10 @@ const SubscribePage = () => {
                 height={220}
               />
               <Title>
-                <Name>주컬리</Name> 컬리뷰
+                <Name>
+                  {name.slice(0, 1)}*{name.slice(2)}
+                </Name>{' '}
+                컬리뷰
               </Title>
             </Info>
             <SubscribeButton onClick={handleSubscribe} selected={selected}>
