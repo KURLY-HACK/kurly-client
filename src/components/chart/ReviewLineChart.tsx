@@ -23,11 +23,11 @@ const ReviewLineChart = ({ id }: { id: string }) => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (productType === 1) {
-      dispatch(getCommonScoreThunk(id));
-      setTotalScores(commonTotalScores);
-    } else {
       dispatch(getFreshScoreThunk(id));
       setTotalScores(freshTotalScores);
+    } else {
+      dispatch(getCommonScoreThunk(id));
+      setTotalScores(commonTotalScores);
     }
   }, []);
   // const totalScores = [
