@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import ScrollToTop from './lib/ScrollToTop';
 import {
   LogIn,
   MainPage,
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <section>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route
