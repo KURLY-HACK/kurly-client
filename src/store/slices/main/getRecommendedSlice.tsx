@@ -9,7 +9,7 @@ const initialState: IMainProductLists = {
 export const getRecommendedThunk = createAsyncThunk(
   'recommend/getrecommended',
   async (thunkAPI) => {
-    const response = await axios.get('api/kurlyviews/products');
+    const response = await axios.get('api/kurlyview-products');
     return response.data;
   }
 );
