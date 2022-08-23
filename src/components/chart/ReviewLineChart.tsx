@@ -23,19 +23,17 @@ const ReviewLineChart = ({ id }: { id: string }) => {
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (productType === 1) {
-      dispatch(getCommonScoreThunk(id));
-      setTotalScores(commonTotalScores);
-    } else {
       dispatch(getFreshScoreThunk(id));
       setTotalScores(freshTotalScores);
+    } else {
+      dispatch(getCommonScoreThunk(id));
+      setTotalScores(commonTotalScores);
     }
   }, []);
-  // const totalScores = [
-  //   { date: '2022-05-01', rate: 4.3 },
-  //   { date: '2022-06-01', rate: 4.0 },
-  //   { date: '2022-07-01', rate: 3.7 },
-  //   { date: '2022-08-01', rate: 4.0 },
-  // ];
+  console.log(commonTotalScores, totalScores);
+
+  //별점 바로 렌더링되게 commonTotalScores는 바로 적용 근데 totalScores.가 적용이 안됨.
+
   return (
     <ApexCharts
       type="line"
@@ -83,4 +81,4 @@ const ReviewLineChart = ({ id }: { id: string }) => {
   );
 };
 
-export default ReviewLineChart;
+export default React.memo(ReviewLineChart);

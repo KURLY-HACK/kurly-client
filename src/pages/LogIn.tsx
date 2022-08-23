@@ -21,7 +21,6 @@ const LogIn = () => {
   if (loginState === true) {
     navigate('/');
   }
-  console.log(isLoginned, loginState);
 
   const showToast = () => {
     new Promise((resolve) => {
