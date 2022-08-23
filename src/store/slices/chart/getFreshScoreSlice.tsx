@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { IFreshScore } from '../../lib/interface';
+import { IFreshScore } from '../../../lib/interface';
 
 const initialState: IFreshScore = {
   pending: false,

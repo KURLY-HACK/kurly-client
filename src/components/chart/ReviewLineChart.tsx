@@ -7,8 +7,6 @@ import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
 
 const ReviewLineChart = ({ id }: { id: string }) => {
   //dispatch할 때 id값 쿼리에 필요
-  const [totalScores, setTotalScores] = useState<IScoreState[]>([]);
-
   const productType = useAppSelector(
     (state: RootState) => state.product.product.type
   );
@@ -24,15 +22,19 @@ const ReviewLineChart = ({ id }: { id: string }) => {
   useEffect(() => {
     if (productType === 1) {
       dispatch(getFreshScoreThunk(id));
-      setTotalScores(freshTotalScores);
     } else {
       dispatch(getCommonScoreThunk(id));
-      setTotalScores(commonTotalScores);
     }
   }, []);
-  console.log(commonTotalScores, totalScores);
-
   //별점 바로 렌더링되게 commonTotalScores는 바로 적용 근데 totalScores.가 적용이 안됨.
+
+  function scores() {
+    if (productType === 1) {
+      return freshTotalScores?.map((score) => score['rate']);
+    } else {
+      return commonTotalScores?.map((score) => score['rate']);
+    }
+  }
 
   return (
     <ApexCharts
@@ -40,7 +42,7 @@ const ReviewLineChart = ({ id }: { id: string }) => {
       series={[
         {
           name: '총점',
-          data: totalScores?.map((score) => score['rate']),
+          data: scores(),
         },
       ]}
       options={{
