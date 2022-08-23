@@ -27,15 +27,21 @@ const FreshLineChart = ({ id }: { id: string }) => {
       series={[
         {
           name: '신선도',
-          data: freshScores.map((score) => score['rate']),
+          data: freshScores.map(
+            (score) => Math.round(score['rate'] * 100) / 100
+          ),
         },
         {
           name: '맛',
-          data: tasteScores.map((score) => score['rate']),
+          data: tasteScores.map(
+            (score) => Math.round(score['rate'] * 100) / 100
+          ),
         },
         {
           name: '배송상태',
-          data: deliveryScores.map((score) => score['rate']),
+          data: deliveryScores.map(
+            (score) => Math.round(score['rate'] * 100) / 100
+          ),
         },
       ]}
       options={{

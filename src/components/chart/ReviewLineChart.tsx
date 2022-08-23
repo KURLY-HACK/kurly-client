@@ -26,13 +26,24 @@ const ReviewLineChart = ({ id }: { id: string }) => {
       dispatch(getCommonScoreThunk(id));
     }
   }, []);
-  //별점 바로 렌더링되게 commonTotalScores는 바로 적용 근데 totalScores.가 적용이 안됨.
 
   function scores() {
     if (productType === 1) {
-      return freshTotalScores?.map((score) => score['rate']);
+      return freshTotalScores?.map(
+        (score) => Math.round(score['rate'] * 100) / 100
+      );
     } else {
-      return commonTotalScores?.map((score) => score['rate']);
+      return commonTotalScores?.map(
+        (score) => Math.round(score['rate'] * 100) / 100
+      );
+    }
+  }
+
+  function date() {
+    if (productType === 1) {
+      return freshTotalScores?.map((score) => score['date']);
+    } else {
+      return commonTotalScores?.map((score) => score['date']);
     }
   }
 
@@ -67,12 +78,7 @@ const ReviewLineChart = ({ id }: { id: string }) => {
         },
         colors: ['#522772'],
         xaxis: {
-          categories: [
-            '2022년 05월',
-            '2022년 06월',
-            '2022년 07월',
-            '2022년 08월',
-          ],
+          categories: date(),
         },
         yaxis: {
           min: 0,
@@ -83,4 +89,4 @@ const ReviewLineChart = ({ id }: { id: string }) => {
   );
 };
 
-export default React.memo(ReviewLineChart);
+export default ReviewLineChart;
