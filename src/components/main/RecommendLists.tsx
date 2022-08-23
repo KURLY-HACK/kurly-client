@@ -63,15 +63,13 @@ const RecommendLists = () => {
         <StyledSlider {...settings}>
           {recommendLists?.map((product) => {
             return (
-              <>
-                <EachProduct
-                  id={product.id}
-                  key={product.id + `${new Date()}`}
-                  image={product.photo}
-                  name={product.title}
-                  price={product.price}
-                />
-              </>
+              <EachProduct
+                id={product.id}
+                key={product.id + `${new Date()}`}
+                image={product.photo}
+                name={product.title}
+                price={product.price}
+              />
             );
           })}
         </StyledSlider>
