@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ApexCharts from 'react-apexcharts';
 import { getFreshScoreThunk } from '../../store/slices/chart/getFreshScoreSlice';
 import { RootState, useAppDispatch, useAppSelector } from '../../store/store';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const PrevArrow = (props: { className: any; style: any; onClick: any }) => {
-  const { className, style, onClick } = props;
+  const { onClick } = props;
   const [isLeftScrollButtonHover, setIsLeftScrollButtonHover] = useState(false);
 
   return (

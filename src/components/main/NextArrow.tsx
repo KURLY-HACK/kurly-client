@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 
 const NextArrow = (props: { className: any; style: any; onClick: any }) => {
-  const { className, style, onClick } = props;
+  const { onClick } = props;
 
   const [isRightScrollButtonHover, setIsRightScrollButtonHover] =
     useState(false);

@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ApexCharts from 'react-apexcharts';
-import { IScoreState } from '../../lib/interface';
 import { getCommonScoreThunk } from '../../store/slices/chart/getCommonScoreSlice';
-import { getFreshScoreThunk } from '../../store/slices/chart/getFreshScoreSlice';
 import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
 
 const ReviewLineChart = ({ id }: { id: string }) => {

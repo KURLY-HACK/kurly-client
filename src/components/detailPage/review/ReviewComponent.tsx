@@ -5,7 +5,6 @@ import { IReview } from '../../../lib/interface';
 
 const ReviewComponent = ({
   review: {
-    id,
     productId,
     productName,
     memberId,

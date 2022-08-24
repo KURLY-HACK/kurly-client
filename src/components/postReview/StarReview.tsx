@@ -1,15 +1,13 @@
-import { click } from '@testing-library/user-event/dist/click';
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { reviewScoreSlice } from '../../store/slices/review/reviewScoreSlice';
-import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
+import { useAppDispatch } from '../../store/store';
 import { useNavigate } from 'react-router-dom';
 
 const StarReview = ({ category }: { category: string }) => {
   const [hovered, setHovered] = useState<number>(0);
   const [clicked, setClicked] = useState<number>(0);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   if (category === 'fresh') {
     dispatch(reviewScoreSlice.actions.setFreshReviewScore({ clicked }));
