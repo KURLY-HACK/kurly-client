@@ -5,6 +5,9 @@
 # 아키텍처
 <img width="1728" alt="kurly_아키텍처" src="https://user-images.githubusercontent.com/76840145/186332861-0656c58e-49b9-4bd6-965a-4aeb53822b22.png">
 
+## API 문서
+https://yourzinc.notion.site/API-99c4a59843554ddab59019f842652471
+
 # 기능
 ## 리뷰 구독하기
 <img width="50%" alt="스크린샷 2022-08-24 14 06 44" src="https://user-images.githubusercontent.com/76840145/186333588-641203fa-2392-492a-a738-3a926ad50982.png"><img width="50%" alt="스크린샷 2022-08-24 14 06 50" src="https://user-images.githubusercontent.com/76840145/186333594-2d094151-3d08-441f-8664-9b49800d9bb2.png">
