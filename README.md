@@ -14,7 +14,7 @@
 
 ## 리뷰 구독 기반 별점에 따른 상품 추천
 <img width="1552" alt="스크린샷 2022-08-24 14 15 00" src="https://user-images.githubusercontent.com/76840145/186334624-1614eb26-95e5-4f52-8188-a3709be3d157.png"> 
-로그인 한 경우 내가 구독한 컬리뷰들이 별점 5점 이상 부여한 상품을 메인 페이지에서 추천 상품으로 모아볼 수 있습니다.
+로그인 한 경우 내가 구독한 컬리뷰들이 별점 5점을 부여한 상품을 메인 페이지에서 추천 상품으로 모아볼 수 있습니다.
 
 ## 기간별 별점 그래프
 <img width="50%" alt="스크린샷 2022-08-24 14 12 31" src="https://user-images.githubusercontent.com/76840145/186334309-e5a0a0c0-f6bf-4c84-8ee3-f26ddce72152.png"><img width="50%" alt="스크린샷 2022-08-24 14 12 32" src="https://user-images.githubusercontent.com/76840145/186334319-b8835b11-7c76-4c0a-8fc7-e8eca662fad4.png">
@@ -34,7 +34,10 @@ DB : Mongo DB
 
 # 배포 링크
 ## frontend
-https://kurly.cf/
+https://kurly.cf/ <br><br>
+**master Id / PW**<br>
+id: kurly@kurly.com<br>
+pw: kurly
 
 ## backend
 https://kurly-view.cf
