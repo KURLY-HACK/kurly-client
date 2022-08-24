@@ -7,44 +7,24 @@ import { RootState, useAppDispatch, useAppSelector } from '../../store/store';
 
 const ReviewLineChart = ({ id }: { id: string }) => {
   //dispatch할 때 id값 쿼리에 필요
-  const productType = useAppSelector(
-    (state: RootState) => state.product.product.type
-  );
+
   const commonTotalScores = useAppSelector(
     (state: RootState) => state.commonscore.rating
   );
 
-  const freshTotalScores = useAppSelector(
-    (state: RootState) => state.freshscore.rating
-  );
-
   const dispatch = useAppDispatch();
   useEffect(() => {
-    if (productType === 1) {
-      dispatch(getFreshScoreThunk(id));
-    } else {
-      dispatch(getCommonScoreThunk(id));
-    }
+    dispatch(getCommonScoreThunk(id));
   }, []);
 
   function scores() {
-    if (productType === 1) {
-      return freshTotalScores?.map(
-        (score) => Math.round(score['rate'] * 100) / 100
-      );
-    } else {
-      return commonTotalScores?.map(
-        (score) => Math.round(score['rate'] * 100) / 100
-      );
-    }
+    return commonTotalScores?.map(
+      (score) => Math.round(score['rate'] * 100) / 100
+    );
   }
 
   function date() {
-    if (productType === 1) {
-      return freshTotalScores?.map((score) => score['date']);
-    } else {
-      return commonTotalScores?.map((score) => score['date']);
-    }
+    return commonTotalScores?.map((score) => score['date'].slice(0, -3));
   }
 
   return (
