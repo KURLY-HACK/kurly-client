@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Header from '../components/header/Header';
 import ReviewList from '../components/subscribeListPage/ReviewList';
@@ -14,7 +14,7 @@ const SubscribeListPage = () => {
   const kurlyviews = useAppSelector(
     (state: RootState) => state.subscribeKurlyviews.kurlyviews
   );
-
+  const [clickedKurlyview, setClickedKurlyview] = useState('');
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -30,11 +30,15 @@ const SubscribeListPage = () => {
           <Name>{name}님</Name>의 구독 리스트입니다
           <KurlyviewLists>
             {kurlyviews?.map((kurlyview) => {
-              return <Kurlyview>{kurlyview.name}</Kurlyview>;
+              return (
+                <Kurlyview onClick={() => setClickedKurlyview(kurlyview.name)}>
+                  {kurlyview.name}
+                </Kurlyview>
+              );
             })}
           </KurlyviewLists>
         </Title>
-        <ReviewList review={review} />
+        <ReviewList review={review} kurlyviewName={clickedKurlyview} />
       </ReviewBox>
     </Container>
   );

@@ -58,7 +58,7 @@ const SubscribePage = () => {
             </SubscribeButton>
           </Profile>
         )}
-        <ReviewList review={review} />
+        <ReviewList review={review} kurlyviewName="" />
       </ReviewBox>
     </Container>
   );

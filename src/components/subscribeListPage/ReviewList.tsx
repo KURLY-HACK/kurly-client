@@ -4,8 +4,49 @@ import { IReview } from '../../lib/interface';
 import ReviewComponent from '../detailPage/review/ReviewComponent';
 import ReviewDetail from '../detailPage/review/ReviewDetail';
 
-const ReviewList = ({ review }: { review: IReview[] }) => {
+const ReviewList = ({
+  review,
+  kurlyviewName,
+}: {
+  review: IReview[];
+  kurlyviewName: string;
+}) => {
   const [selected, setSelected] = useState('0');
+
+  console.log(kurlyviewName);
+  function reviewLists() {
+    if (kurlyviewName === '') {
+      return (
+        <div>
+          {review &&
+            review.map((data, idx) => (
+              <section key={data.id} onClick={() => setSelected(data.id)}>
+                {selected === data.id ? (
+                  <ReviewDetail review={data} />
+                ) : (
+                  <ReviewComponent review={data} idx={idx} />
+                )}
+              </section>
+            ))}
+        </div>
+      );
+    }
+    if (kurlyviewName !== '') {
+      return review
+        .filter((data) => data.memberName === kurlyviewName)
+        .map((data, idx) => (
+          <section key={data.id} onClick={() => setSelected(data.id)}>
+            {selected === data.id ? (
+              <ReviewDetail review={data} />
+            ) : (
+              <ReviewComponent review={data} idx={idx} />
+            )}
+          </section>
+        ));
+    }
+  }
+
+  console.log(reviewLists());
 
   return (
     <Container>
@@ -17,16 +58,7 @@ const ReviewList = ({ review }: { review: IReview[] }) => {
           <Column>작성일</Column>
           <Column>도움</Column>
         </ReviewColumns>
-        {review &&
-          review.map((data, idx) => (
-            <section key={data.id} onClick={() => setSelected(data.id)}>
-              {selected === data.id ? (
-                <ReviewDetail review={data} />
-              ) : (
-                <ReviewComponent review={data} idx={idx} />
-              )}
-            </section>
-          ))}
+        {reviewLists()}
       </ReviewBox>
     </Container>
   );

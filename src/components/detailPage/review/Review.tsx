@@ -58,7 +58,7 @@ const Review = ({ review, id }: { review: IReview[]; id: string }) => {
         배송관련, 주문(취소/교환/환불)관련 문의 및 요청사항은 마이컬리 내 1:1
         문의에 남겨주세요.
       </Description>
-      <ReviewList review={review} />
+      <ReviewList review={review} kurlyviewName="" />
       <WriteButton onClick={() => navigate(`/post/${id}`)}>
         후기쓰기
       </WriteButton>
