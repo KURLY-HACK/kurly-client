@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Header from '../components/header/Header';
 import ReviewList from '../components/subscribeListPage/ReviewList';
+import { getSubscribeKurlyviewsThunk } from '../store/slices/subscribe/getSubscribeKurlyviewsSlice';
 import { getSubscribeListThunk } from '../store/slices/subscribe/getSubscribeListSlice';
 import { RootState, useAppDispatch, useAppSelector } from '../store/store';
 
@@ -10,11 +11,15 @@ const SubscribeListPage = () => {
     (state: RootState) => state.subscribeList.subscribeList
   );
   const { name } = useAppSelector((state: RootState) => state.login);
+  const kurlyviews = useAppSelector(
+    (state: RootState) => state.subscribeKurlyviews.kurlyviews
+  );
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getSubscribeListThunk());
+    dispatch(getSubscribeKurlyviewsThunk());
   }, []);
 
   return (
@@ -23,6 +28,11 @@ const SubscribeListPage = () => {
       <ReviewBox>
         <Title>
           <Name>{name}님</Name>의 구독 리스트입니다
+          <KurlyviewLists>
+            {kurlyviews?.map((kurlyview) => {
+              return <Kurlyview>{kurlyview.name}</Kurlyview>;
+            })}
+          </KurlyviewLists>
         </Title>
         <ReviewList review={review} />
       </ReviewBox>
@@ -58,4 +68,28 @@ const ReviewBox = styled.section`
   align-items: center;
 
   padding: 0 20px;
+`;
+
+const KurlyviewLists = styled.div`
+  display: flex;
+  padding-top: 50px;
+`;
+
+const Kurlyview = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  background-color: #5f0080;
+  text-align: center;
+  line-height: 100px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-right: 20px;
+  &:hover {
+    cursor: pointer;
+    color: #5f0080;
+    background-color: #ffffff;
+    border: 1px solid #5f0080;
+  }
 `;
