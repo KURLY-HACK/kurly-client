@@ -109,3 +109,13 @@ export interface ISubscribeState {
   pending: boolean;
   subscribe: boolean;
 }
+
+export interface IKurlyview {
+  name: string;
+  member_id: string;
+}
+
+export interface IKurlyviewLists {
+  pending: boolean;
+  kurlyviews: IKurlyview[];
+}
