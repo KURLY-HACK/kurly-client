@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Header from '../components/header/Header';
 import ReviewList from '../components/subscribeListPage/ReviewList';
 import { getSubscribeKurlyviewsThunk } from '../store/slices/subscribe/getSubscribeKurlyviewsSlice';
@@ -31,7 +31,14 @@ const SubscribeListPage = () => {
           <KurlyviewLists>
             {kurlyviews?.map((kurlyview) => {
               return (
-                <Kurlyview onClick={() => setClickedKurlyview(kurlyview.name)}>
+                <Kurlyview
+                  onClick={() =>
+                    clickedKurlyview === kurlyview.name
+                      ? setClickedKurlyview('')
+                      : setClickedKurlyview(kurlyview.name)
+                  }
+                  selected={clickedKurlyview === kurlyview.name}
+                >
                   {kurlyview.name}
                 </Kurlyview>
               );
@@ -79,21 +86,39 @@ const KurlyviewLists = styled.div`
   padding-top: 50px;
 `;
 
-const Kurlyview = styled.div`
+const Kurlyview = styled.div<{ selected: boolean }>`
   width: 100px;
   height: 100px;
   border-radius: 50px;
-  background-color: #5f0080;
+  margin-right: 20px;
+
   text-align: center;
   line-height: 100px;
   font-size: 16px;
   font-weight: 600;
-  color: #ffffff;
-  margin-right: 20px;
+  box-sizing: border-box;
+
+  cursor: pointer;
+
+  ${({ selected }) =>
+    selected
+      ? css`
+          color: #5f0080;
+          background-color: #ffffff;
+          border: 1px solid #5f0080;
+        `
+      : css`
+          background-color: #5f0080;
+          color: #ffffff;
+        `}
+
   &:hover {
-    cursor: pointer;
-    color: #5f0080;
-    background-color: #ffffff;
-    border: 1px solid #5f0080;
+    ${({ selected }) =>
+      !selected &&
+      css`
+        color: #5f0080;
+        background-color: #ffffff;
+        border: 1px solid #5f0080;
+      `}
   }
 `;
